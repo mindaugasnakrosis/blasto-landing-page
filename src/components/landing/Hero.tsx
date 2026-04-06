@@ -20,7 +20,7 @@ const Hero = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="flex flex-col items-center"
         >
-          <img src={blastoLogo} alt="Blasto logo" className="h-24 w-24 rounded-2xl shadow-lg mb-6" />
+          <img src={blastoLogo} alt="Blasto logo" className="h-24 w-24 rounded-2xl mb-6" style={{ mixBlendMode: 'multiply' }} />
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 mb-8">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
