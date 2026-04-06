@@ -104,7 +104,7 @@ const PrivacyPolicy = () => {
             <h2 className="text-xl font-semibold mb-3">10. Contact Us</h2>
             <p>If you have any questions about this Privacy Policy, please contact us:</p>
             <ul className="list-none pl-0 mt-3 space-y-1">
-              <li><strong>MB TrustGoods</strong></li>
+              <li><strong>Blasto</strong></li>
               <li>Email: <a href="mailto:support@blastoivf.com" className="text-primary hover:underline">support@blastoivf.com</a></li>
 
             </ul>
