@@ -20,22 +20,39 @@ const FeedbackForm = () => {
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("comment");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const labels: Record<string, string> = {
+    comment: "comment",
+    feature: "feature request",
+    bug: "bug report",
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    const labels: Record<string, string> = {
-      comment: "comment",
-      feature: "feature request",
-      bug: "bug report",
-    };
-    setTimeout(() => {
-      setLoading(false);
+    const form = e.target as HTMLFormElement;
+    try {
+      await fetch("https://script.google.com/macros/s/AKfycbwpb6li2kLQMXENKYkG6IBOmXsGoPeo-hzF3bqtLH6BPeYo01evMfnepdM20YH5xaeo0A/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          form: "feedback",
+          category: activeTab,
+          name: (form.elements.namedItem(`fb-name-${activeTab}`) as HTMLInputElement).value,
+          email: (form.elements.namedItem(`fb-email-${activeTab}`) as HTMLInputElement).value,
+          message: (form.elements.namedItem(`fb-message-${activeTab}`) as HTMLTextAreaElement).value,
+        }),
+      });
       toast({
         title: "✅ Feedback received!",
         description: `Thank you for your ${labels[activeTab]}. We truly appreciate it.`,
       });
-      (e.target as HTMLFormElement).reset();
-    }, 800);
+      form.reset();
+    } catch {
+      toast({ title: "Something went wrong", description: "Please try again later.", variant: "destructive" });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

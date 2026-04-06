@@ -9,17 +9,30 @@ const Newsletter = () => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    const form = e.target as HTMLFormElement;
+    try {
+      await fetch("https://script.google.com/macros/s/AKfycbwpb6li2kLQMXENKYkG6IBOmXsGoPeo-hzF3bqtLH6BPeYo01evMfnepdM20YH5xaeo0A/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          form: "newsletter",
+          email: (form.querySelector("input[type=email]") as HTMLInputElement).value,
+        }),
+      });
       toast({
         title: "📬 Subscribed!",
         description: "You'll be the first to know when Blasto launches publicly.",
       });
-      (e.target as HTMLFormElement).reset();
-    }, 600);
+      form.reset();
+    } catch {
+      toast({ title: "Something went wrong", description: "Please try again later.", variant: "destructive" });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
