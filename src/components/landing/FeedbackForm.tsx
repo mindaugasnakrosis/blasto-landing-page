@@ -79,7 +79,7 @@ const FeedbackForm = () => {
               <Tabs value={activeTab} onValueChange={setActiveTab}>
                 <TabsList className="w-full mb-6 bg-muted/60">
                   {categories.map((cat) => (
-                    <TabsTrigger key={cat.value} value={cat.value} className="flex-1 gap-1.5 text-xs sm:text-sm">
+                    <TabsTrigger key={cat.value} value={cat.value} className="flex-1 gap-1.5 text-xs sm:text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                       <cat.icon className="h-3.5 w-3.5" />
                       {cat.label}
                     </TabsTrigger>
