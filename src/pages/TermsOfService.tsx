@@ -28,7 +28,7 @@ const TermsOfService = () => {
         <div className="space-y-8 text-foreground/90 leading-relaxed">
           <section>
             <h2 className="text-xl font-semibold mb-3">1. Acceptance of Terms</h2>
-            <p>By accessing or using the Blasto application ("the App"), operated by MB TrustGoods, a company registered in Lithuania, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the App.</p>
+            <p>By accessing or using the Blasto application ("the App"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the App.</p>
           </section>
 
           <section>
@@ -66,12 +66,12 @@ const TermsOfService = () => {
 
           <section>
             <h2 className="text-xl font-semibold mb-3">6. Intellectual Property</h2>
-            <p>All content, features, and functionality of the App are owned by MB TrustGoods and are protected by copyright, trademark, and other intellectual property laws. You may not reproduce, distribute, or create derivative works without our express written permission.</p>
+            <p>All content, features, and functionality of the App are owned by Blasto and are protected by copyright, trademark, and other intellectual property laws. You may not reproduce, distribute, or create derivative works without our express written permission.</p>
           </section>
 
           <section>
             <h2 className="text-xl font-semibold mb-3">7. Limitation of Liability</h2>
-            <p>To the fullest extent permitted by law, MB TrustGoods shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of the App. Our total liability shall not exceed the amount you paid us in the twelve months prior to the claim.</p>
+            <p>To the fullest extent permitted by law, Blasto shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of the App. Our total liability shall not exceed the amount you paid us in the twelve months prior to the claim.</p>
           </section>
 
           <section>
@@ -81,7 +81,7 @@ const TermsOfService = () => {
 
           <section>
             <h2 className="text-xl font-semibold mb-3">9. Governing Law</h2>
-            <p>These Terms shall be governed by and construed in accordance with the laws of the Republic of Lithuania, without regard to its conflict of law provisions. Any disputes arising from these Terms shall be subject to the exclusive jurisdiction of the courts of Lithuania.</p>
+            <p>These Terms shall be governed by and construed in accordance with applicable laws. Any disputes arising from these Terms shall be resolved in accordance with applicable jurisdiction.</p>
           </section>
 
           <section>
@@ -93,9 +93,8 @@ const TermsOfService = () => {
             <h2 className="text-xl font-semibold mb-3">11. Contact Us</h2>
             <p>If you have any questions about these Terms of Service, please contact us:</p>
             <ul className="list-none pl-0 mt-3 space-y-1">
-              <li><strong>MB TrustGoods</strong></li>
+              <li><strong>Blasto</strong></li>
               <li>Email: <a href="mailto:support@blastoivf.com" className="text-primary hover:underline">support@blastoivf.com</a></li>
-              <li>Country: Lithuania</li>
             </ul>
           </section>
         </div>

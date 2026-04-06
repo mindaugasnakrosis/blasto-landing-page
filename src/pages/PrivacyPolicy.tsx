@@ -28,7 +28,7 @@ const PrivacyPolicy = () => {
         <div className="space-y-8 text-foreground/90 leading-relaxed">
           <section>
             <h2 className="text-xl font-semibold mb-3">1. Introduction</h2>
-            <p>MB TrustGoods ("we", "our", or "us"), a company registered in Lithuania, operates the Blasto mobile application and related services. We are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application and website (collectively, "the Service").</p>
+            <p>Blasto ("we", "our", or "us") operates the Blasto mobile application and related services. We are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application and website (collectively, "the Service").</p>
           </section>
 
           <section>
@@ -92,7 +92,7 @@ const PrivacyPolicy = () => {
               <li><strong>Right to Object:</strong> You may object to our processing of your personal data.</li>
               <li><strong>Right to Withdraw Consent:</strong> Where processing is based on consent, you may withdraw it at any time.</li>
             </ul>
-            <p className="mt-3">To exercise any of these rights, contact us at <a href="mailto:support@blastoivf.com" className="text-primary hover:underline">support@blastoivf.com</a>. We will respond to your request within 30 days. You also have the right to lodge a complaint with the Lithuanian State Data Protection Inspectorate (VDAI) or your local supervisory authority.</p>
+            <p className="mt-3">To exercise any of these rights, contact us at <a href="mailto:support@blastoivf.com" className="text-primary hover:underline">support@blastoivf.com</a>. We will respond to your request within 30 days. You also have the right to lodge a complaint with your local data protection supervisory authority.</p>
           </section>
 
           <section>
@@ -106,7 +106,7 @@ const PrivacyPolicy = () => {
             <ul className="list-none pl-0 mt-3 space-y-1">
               <li><strong>MB TrustGoods</strong></li>
               <li>Email: <a href="mailto:support@blastoivf.com" className="text-primary hover:underline">support@blastoivf.com</a></li>
-              <li>Country: Lithuania</li>
+
             </ul>
           </section>
         </div>
