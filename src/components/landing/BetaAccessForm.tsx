@@ -41,7 +41,7 @@ const BetaAccessForm = () => {
   };
 
   return (
-    <section id="beta-access" className="py-24 bg-background">
+    <section id="beta-access" className="scroll-mt-16 py-24 bg-background">
       <div className="container px-4">
         <motion.div
           className="max-w-lg mx-auto"

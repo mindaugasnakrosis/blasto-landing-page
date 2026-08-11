@@ -1,38 +1,64 @@
+import { Link } from "react-router-dom";
+import { Mail } from "lucide-react";
 import blastoLogo from "@/assets/blasto-logo.png";
+import AppStoreBadge from "./AppStoreBadge";
+import { SUPPORT_EMAIL } from "@/lib/site";
 
 const Footer = () => {
   return (
-    <footer className="border-t border-border/50 bg-blasto-cream py-12">
+    <footer className="border-t border-border/50 bg-blasto-cream py-14">
       <div className="container px-4">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-3">
-            <img
-              src={blastoLogo}
-              alt="Blasto logo"
-              className="h-8 w-8 rounded-lg"
-            />
-            <span className="text-xl font-bold">Blasto</span>
+        <div className="grid gap-10 md:grid-cols-4">
+          <div className="md:col-span-2">
+            <div className="flex items-center gap-3">
+              <img src={blastoLogo} alt="" className="h-9 w-9 rounded-lg" />
+              <span className="text-xl font-bold">Blasto</span>
+            </div>
+            <p className="mt-3 max-w-xs text-sm text-muted-foreground leading-relaxed">
+              Nurturing every step of your fertility journey. An iPhone app for tracking
+              IVF cycles, medications, symptoms, and results.
+            </p>
+            <AppStoreBadge className="mt-5" />
           </div>
 
-          <p className="text-sm text-muted-foreground text-center">
-            Nurturing every step of your fertility journey
-          </p>
+          <div>
+            <p className="mb-3 text-sm font-semibold text-foreground">Product</p>
+            <ul className="space-y-2.5 text-sm text-muted-foreground">
+              <li><a href="/#features" className="hover:text-primary transition-colors">Features</a></li>
+              <li><a href="/#privacy" className="hover:text-primary transition-colors">Privacy & Trust</a></li>
+              <li><a href="/#faq" className="hover:text-primary transition-colors">FAQ</a></li>
+              <li><a href="/#beta-access" className="hover:text-primary transition-colors">Request Beta Access</a></li>
+            </ul>
+          </div>
 
-          <div className="flex items-center gap-6 text-sm text-muted-foreground">
-            <a href="/privacy" className="hover:text-primary transition-colors">
-              Privacy Policy
-            </a>
-            <a href="/terms" className="hover:text-primary transition-colors">
-              Terms of Service
-            </a>
-            <a href="#" className="hover:text-primary transition-colors">
-              Contact
-            </a>
+          <div>
+            <p className="mb-3 text-sm font-semibold text-foreground">Company</p>
+            <ul className="space-y-2.5 text-sm text-muted-foreground">
+              <li>
+                <Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
+              </li>
+              <li>
+                <Link to="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>
+              </li>
+              <li>
+                <a
+                  href={`mailto:${SUPPORT_EMAIL}`}
+                  className="inline-flex items-center gap-1.5 hover:text-primary transition-colors"
+                >
+                  <Mail className="h-3.5 w-3.5" />
+                  {SUPPORT_EMAIL}
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-border/30 text-center text-xs text-muted-foreground">
-          © 2026 Blasto. All rights reserved.
+        <div className="mt-10 border-t border-border/30 pt-6 text-center text-xs text-muted-foreground space-y-2">
+          <p>
+            Blasto is a personal tracking tool and does not provide medical advice.
+            Always consult your healthcare provider.
+          </p>
+          <p>© 2026 Blasto. All rights reserved.</p>
         </div>
       </div>
     </footer>

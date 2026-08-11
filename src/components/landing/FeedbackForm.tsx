@@ -56,7 +56,7 @@ const FeedbackForm = () => {
   };
 
   return (
-    <section id="feedback" className="py-24 bg-blasto-cream">
+    <section id="feedback" className="scroll-mt-16 py-24 bg-blasto-cream">
       <div className="container px-4">
         <motion.div
           className="max-w-lg mx-auto"

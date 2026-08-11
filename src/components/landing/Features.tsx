@@ -1,36 +1,116 @@
+import { ReactNode } from "react";
 import { motion } from "framer-motion";
-import { CalendarDays, Pill, BarChart3, ShieldCheck } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Mic, Pill, HeartPulse, BarChart3, BookOpen, Check } from "lucide-react";
+import { PhoneFrame, ScreenCompanion } from "./PhoneMockups";
+import { cn } from "@/lib/utils";
+import screenHome from "@/assets/screenshots/screen-home.png";
+import screenSymptoms from "@/assets/screenshots/screen-symptoms.png";
+import screenResults from "@/assets/screenshots/screen-results.png";
+import screenLearn from "@/assets/screenshots/screen-learn.png";
 
-const features = [
+type Feature = {
+  icon: typeof Mic;
+  eyebrow: string;
+  title: ReactNode;
+  description: string;
+  bullets: string[];
+  screen: ReactNode;
+};
+
+const features: Feature[] = [
   {
-    icon: CalendarDays,
-    title: "Cycle & Appointment Tracking",
-    description: "Keep every date, appointment, and milestone organized in a clear, visual timeline.",
+    icon: Mic,
+    eyebrow: "Your AI companion",
+    title: (
+      <>
+        Someone to talk to, <span className="text-gradient">any hour of the cycle</span>
+      </>
+    ),
+    description:
+      "IVF comes with questions at 11pm and nerves before every scan. Blasto's voice companion is one tap away on every screen — it listens, explains what's ahead in plain language, and helps you log things hands-free.",
+    bullets: [
+      "Talk or type — whatever feels right in the moment",
+      "Knows where you are in your treatment",
+      "Never a substitute for your clinic's advice",
+    ],
+    screen: <ScreenCompanion />,
   },
   {
     icon: Pill,
-    title: "Medication Reminders",
-    description: "Never miss a dose with gentle, timely reminders for all your medications and protocols.",
+    eyebrow: "Medications & appointments",
+    title: (
+      <>
+        Every dose and date, <span className="text-gradient">off your mind</span>
+      </>
+    ),
+    description:
+      "Stim protocols are a part-time job. Blasto turns yours into a simple daily checklist — injections, pills, and appointments with reminders timed the way you want them.",
+    bullets: [
+      "Today's tasks in one clear list",
+      "Reminders for every medication and appointment",
+      "Your clinic, protocol, and treatment phase in one place",
+    ],
+    screen: <img src={screenHome} alt="Blasto home screen with today's medication tasks and reminders" />,
+  },
+  {
+    icon: HeartPulse,
+    eyebrow: "Symptom tracking",
+    title: (
+      <>
+        Log how you feel <span className="text-gradient">in seconds</span>
+      </>
+    ),
+    description:
+      "Track symptoms and their intensity as you go, so you can spot patterns and give your care team a clearer picture — and see how common what you're feeling is among others on the same road.",
+    bullets: [
+      "Quick intensity sliders, no long forms",
+      "A running log across your whole cycle",
+      "Gentle reassurance, backed by real prevalence data",
+    ],
+    screen: <img src={screenSymptoms} alt="Blasto symptom tracking screen with intensity slider" />,
   },
   {
     icon: BarChart3,
-    title: "Progress Insights",
-    description: "Visualize your journey with easy-to-read charts and milestone tracking over time.",
+    eyebrow: "Results",
+    title: (
+      <>
+        Your numbers, <span className="text-gradient">finally clear</span>
+      </>
+    ),
+    description:
+      "From eggs retrieved to euploid embryos, Blasto lays out every retrieval, blood draw, and ultrasound as a clean funnel — so you always know where things stand without decoding a portal printout.",
+    bullets: [
+      "Retrieval funnel from eggs to embryos",
+      "Blood work and ultrasounds alongside",
+      "Every cycle kept for easy reference",
+    ],
+    screen: <img src={screenResults} alt="Blasto results screen showing an egg retrieval funnel chart" />,
   },
   {
-    icon: ShieldCheck,
-    title: "Private & Secure",
-    description: "Your data is encrypted and never shared. Your fertility journey stays yours alone.",
+    icon: BookOpen,
+    eyebrow: "Learn",
+    title: (
+      <>
+        Understand what's happening, <span className="text-gradient">phase by phase</span>
+      </>
+    ),
+    description:
+      "Short, readable articles matched to your treatment phase — medications explained, nutrition tips, and the emotional side of IVF. Informational only, and always deferring to your healthcare provider.",
+    bullets: [
+      "Picked for you based on where you are",
+      "5-minute reads, not medical journals",
+      "Covers the emotional journey too",
+    ],
+    screen: <img src={screenLearn} alt="Blasto learn screen with articles matched to your treatment phase" />,
   },
 ];
 
 const Features = () => {
   return (
-    <section id="features" className="py-24 bg-background">
+    <section id="features" className="scroll-mt-16 py-24 bg-background">
       <div className="container px-4">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -44,24 +124,38 @@ const Features = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+        <div className="space-y-24 max-w-5xl mx-auto">
           {features.map((feature, i) => (
             <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 30 }}
+              key={feature.eyebrow}
+              className={cn(
+                "flex flex-col items-center gap-10 lg:gap-16",
+                i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+              )}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6 }}
             >
-              <Card className="h-full border-border/50 bg-card/80 backdrop-blur-sm hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 hover:-translate-y-1">
-                <CardContent className="p-6 text-center">
-                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10">
-                    <feature.icon className="h-7 w-7 text-primary" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
-                </CardContent>
-              </Card>
+              <div className="flex-1 text-center lg:text-left">
+                <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-blasto-sage-dark">
+                  <feature.icon className="h-4 w-4" />
+                  {feature.eyebrow}
+                </div>
+                <h3 className="mt-4 text-2xl sm:text-3xl font-bold leading-snug">{feature.title}</h3>
+                <p className="mt-4 text-muted-foreground leading-relaxed">{feature.description}</p>
+                <ul className="mt-6 space-y-2.5 text-left inline-block">
+                  {feature.bullets.map((b) => (
+                    <li key={b} className="flex items-start gap-2.5 text-sm text-foreground/80">
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/15">
+                        <Check className="h-3 w-3 text-blasto-sage-dark" strokeWidth={3} />
+                      </span>
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <PhoneFrame className="w-[240px] sm:w-[270px]">{feature.screen}</PhoneFrame>
             </motion.div>
           ))}
         </div>

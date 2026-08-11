@@ -1,73 +1,40 @@
-# Welcome to your Lovable project
+# Blasto landing page
 
-## Project info
+Marketing and compliance site for [Blasto](https://blastoivf.com) — an iPhone app
+for tracking IVF cycles, medications, symptoms, and results.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Stack
 
-## How can I edit this code?
+- Vite + React 18 + TypeScript
+- Tailwind CSS + shadcn/ui, framer-motion
+- Deployed to GitHub Pages via `.github/workflows/deploy.yml` on push to `main`
 
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+## Development
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+npm install
+npm run dev        # dev server on :8080
+npm run build      # client build + SSR build + prerender
+npm run preview    # serve dist/
+npm test           # vitest
 ```
 
-**Edit a file directly in GitHub**
+## Prerendering
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+`npm run build` renders `/`, `/privacy`, and `/terms` to static HTML
+(`scripts/prerender.mjs`), so crawlers and link unfurlers see full content.
+`dist/404.html` stays a plain SPA shell as the GitHub Pages fallback for
+unknown routes. The client hydrates prerendered pages (`src/main.tsx`).
 
-**Use GitHub Codespaces**
+## Going live on the App Store
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Set `APP_STORE_URL` in `src/lib/site.ts`. The navbar, hero, and footer switch
+from "Request Beta Access" to a Download-on-the-App-Store badge automatically.
 
-## What technologies are used for this project?
+## App screenshots
 
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Real app screenshots live in `src/assets/screenshots/` (750 px wide). The AI
+companion feature block uses a stylized illustration
+(`ScreenCompanion` in `src/components/landing/PhoneMockups.tsx`) until a real
+screenshot of that screen exists — swap it the same way the other blocks
+use `<PhoneFrame><img …/></PhoneFrame>`.
