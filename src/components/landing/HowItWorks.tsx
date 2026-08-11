@@ -36,7 +36,7 @@ const HowItWorks = () => {
           <p className="mt-4 text-muted-foreground text-lg">Three simple steps to get started.</p>
         </motion.div>
 
-        <div className="flex flex-col md:flex-row items-start justify-center gap-8 md:gap-4 max-w-4xl mx-auto">
+        <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-8 md:gap-4 max-w-4xl mx-auto">
           {steps.map((step, i) => (
             <motion.div
               key={step.title}
