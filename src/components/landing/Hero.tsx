@@ -4,7 +4,7 @@ import { Sparkles, ShieldCheck } from "lucide-react";
 import { PhoneFrame } from "./PhoneMockups";
 import AppStoreBadge from "./AppStoreBadge";
 import { isAppLive } from "@/lib/site";
-import screenHome from "@/assets/screenshots/screen-home.png";
+import screenHero from "@/assets/screenshots/screen-hero.png";
 
 const Hero = () => {
   return (
@@ -104,7 +104,7 @@ const Hero = () => {
           transition={{ duration: 0.9, delay: 0.3 }}
         >
           <PhoneFrame className="rotate-2 hover:rotate-0 transition-transform duration-500">
-            <img src={screenHome} alt="Blasto home screen showing today's medication tasks" />
+            <img src={screenHero} alt="Blasto home screen showing an egg retrieval countdown and today's medication tasks" />
           </PhoneFrame>
         </motion.div>
       </div>

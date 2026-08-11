@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Mic, Pill, HeartPulse, BarChart3, BookOpen, Check } from "lucide-react";
 import { PhoneFrame, ScreenCompanion } from "./PhoneMockups";
 import { cn } from "@/lib/utils";
-import screenProfile from "@/assets/screenshots/screen-profile.png";
+import screenHome from "@/assets/screenshots/screen-home.png";
 import screenSymptoms from "@/assets/screenshots/screen-symptoms.png";
 import screenResults from "@/assets/screenshots/screen-results.png";
 import screenLearn from "@/assets/screenshots/screen-learn.png";
@@ -50,7 +50,7 @@ const features: Feature[] = [
       "Reminders for every medication and appointment",
       "Your clinic, protocol, and treatment phase in one place",
     ],
-    screen: <img src={screenProfile} alt="Blasto treatment screen with medications, clinic, and reminder settings" />,
+    screen: <img src={screenHome} alt="Blasto home screen with today's medication tasks and reminders" />,
   },
   {
     icon: HeartPulse,
