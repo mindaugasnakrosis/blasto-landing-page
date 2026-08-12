@@ -6,21 +6,21 @@ import { PhoneFrame, ScreenCompanion } from "@/components/landing/PhoneMockups";
 import AppStoreBadge from "@/components/landing/AppStoreBadge";
 import { isAppLive } from "@/lib/site";
 import { featurePageBySlug, type FeaturePage, type ScreenKey } from "@/lib/featurePages";
-import screenHome from "@/assets/screenshots/screen-home.png";
-import screenSymptoms from "@/assets/screenshots/screen-symptoms.png";
-import screenResults from "@/assets/screenshots/screen-results.png";
+import screenHome from "@/assets/screenshots/screen-home.webp";
+import screenSymptoms from "@/assets/screenshots/screen-symptoms.webp";
+import screenResults from "@/assets/screenshots/screen-results.webp";
 
 const screens: Record<ScreenKey, { node: JSX.Element; alt: string }> = {
   home: {
-    node: <img src={screenHome} alt="Blasto home screen with today's medication tasks and reminders" />,
+    node: <img src={screenHome} alt="Blasto home screen with today's medication tasks and reminders" width={750} height={1626} loading="lazy" decoding="async" />,
     alt: "Blasto home screen with today's medication tasks and reminders",
   },
   symptoms: {
-    node: <img src={screenSymptoms} alt="Blasto symptom tracking screen with intensity slider" />,
+    node: <img src={screenSymptoms} alt="Blasto symptom tracking screen with intensity slider" width={750} height={1626} loading="lazy" decoding="async" />,
     alt: "Blasto symptom tracking screen with intensity slider",
   },
   results: {
-    node: <img src={screenResults} alt="Blasto results screen showing an egg retrieval funnel chart" />,
+    node: <img src={screenResults} alt="Blasto results screen showing an egg retrieval funnel chart" width={750} height={1626} loading="lazy" decoding="async" />,
     alt: "Blasto results screen showing an egg retrieval funnel chart",
   },
   companion: { node: <ScreenCompanion />, alt: "Blasto voice companion" },

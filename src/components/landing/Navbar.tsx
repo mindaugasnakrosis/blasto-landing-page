@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { isAppLive, APP_STORE_URL } from "@/lib/site";
-import blastoLogo from "@/assets/blasto-logo.png";
+import blastoLogo from "@/assets/blasto-logo.webp";
 
 const links = [
   { href: "/#features", label: "Features" },
@@ -14,7 +14,7 @@ const Navbar = () => {
     <header className="fixed top-0 inset-x-0 z-50 border-b border-border/40 bg-background/80 backdrop-blur-md">
       <nav className="container flex h-16 items-center justify-between px-4">
         <a href="/" className="flex items-center gap-2.5">
-          <img src={blastoLogo} alt="" className="h-8 w-8 rounded-lg" />
+          <img src={blastoLogo} alt="" className="h-8 w-8 rounded-lg" width={128} height={128} />
           <span className="text-lg font-bold tracking-tight">Blasto</span>
         </a>
 

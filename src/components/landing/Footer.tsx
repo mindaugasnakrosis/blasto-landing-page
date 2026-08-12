@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail } from "lucide-react";
-import blastoLogo from "@/assets/blasto-logo.png";
+import blastoLogo from "@/assets/blasto-logo.webp";
 import AppStoreBadge from "./AppStoreBadge";
 import { SUPPORT_EMAIL } from "@/lib/site";
 
@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3">
-              <img src={blastoLogo} alt="" className="h-9 w-9 rounded-lg" />
+              <img src={blastoLogo} alt="" className="h-9 w-9 rounded-lg" width={128} height={128} />
               <span className="text-xl font-bold">Blasto</span>
             </div>
             <p className="mt-3 max-w-xs text-sm text-muted-foreground leading-relaxed">

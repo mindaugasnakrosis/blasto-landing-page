@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import blastoLogo from "@/assets/blasto-logo.png";
+import blastoLogo from "@/assets/blasto-logo.webp";
 
 const PrivacyPolicy = () => {
   return (
@@ -10,7 +10,7 @@ const PrivacyPolicy = () => {
         <div className="container px-4 py-4 flex items-center gap-3">
           <Link to="/" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
             <ArrowLeft className="h-4 w-4" />
-            <img src={blastoLogo} alt="Blasto logo" className="h-7 w-7 rounded-lg" />
+            <img src={blastoLogo} alt="Blasto logo" className="h-7 w-7 rounded-lg" width={128} height={128} />
             <span className="font-bold text-lg text-foreground">Blasto</span>
           </Link>
         </div>

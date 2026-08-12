@@ -4,7 +4,7 @@ import { Sparkles, ShieldCheck } from "lucide-react";
 import { PhoneFrame } from "./PhoneMockups";
 import AppStoreBadge from "./AppStoreBadge";
 import { isAppLive } from "@/lib/site";
-import screenHero from "@/assets/screenshots/screen-hero.png";
+import screenHero from "@/assets/screenshots/screen-hero.webp";
 
 const Hero = () => {
   return (
@@ -104,7 +104,19 @@ const Hero = () => {
           transition={{ duration: 0.9, delay: 0.3 }}
         >
           <PhoneFrame className="rotate-2 hover:rotate-0 transition-transform duration-500">
-            <img src={screenHero} alt="Blasto home screen showing an egg retrieval countdown and today's medication tasks" />
+            {/* The LCP element. Eager + high priority; the prerendered HTML
+                means the preload scanner finds it before React boots. */}
+            <img
+              src={screenHero}
+              alt="Blasto home screen showing an egg retrieval countdown and today's medication tasks"
+              width={750}
+              height={1626}
+              loading="eager"
+              decoding="async"
+              // React 18 drops the camelCase `fetchPriority` prop silently
+              // (it landed in React 19), so pass the DOM attribute directly.
+              {...{ fetchpriority: "high" }}
+            />
           </PhoneFrame>
         </motion.div>
       </div>
