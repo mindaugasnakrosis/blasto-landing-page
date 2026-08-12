@@ -54,6 +54,11 @@ export type Guide = {
   /** The query this article is written to answer. See docs/content-plan.md
    *  for the SERP evidence behind each one. */
   targetQuery: string;
+  /** Relative Google Trends interest (US, 12mo, Aug 2026) and competitive read.
+   *  Trends is normalized per comparison — these are NOT searches per month, and
+   *  a low number means "small next to the terms it was compared against", not
+   *  "no demand". Confirm in Keyword Planner before committing writing time. */
+  demand: string;
   /** The shape the ranking results take for this query. These SERPs reward
    *  charts, timelines, and templates over essays — match the format. */
   format: string;
@@ -73,26 +78,39 @@ export type Guide = {
 };
 
 /**
- * Planned articles, ordered by how winnable the SERP looked in August 2026.
- * Full evidence for each is in docs/content-plan.md — read it before changing
- * the slate, and re-run the research before writing, since these move.
+ * Planned articles, in write order. Full evidence is in docs/content-plan.md —
+ * read it before changing the slate, and re-run the research before writing,
+ * because SERPs move.
  *
- * The common thread: queries where the current page one is personal blogs and
- * unmaintained clinic pages, not Flo or Mayo. General "what is IVF" explainers
- * are deliberately absent — that fight is lost before it starts.
+ * Ordered by demand × winnability. An earlier version of this list was ordered
+ * by SERP weakness alone, which put the two lowest-demand terms first; Trends
+ * data corrected it. The common thread is unchanged: queries where page one is
+ * personal blogs and unmaintained clinic pages, not Flo or Mayo. General
+ * "what is IVF" explainers are deliberately absent — that fight is lost before
+ * it starts.
+ *
+ * NOTE: the highest-demand opportunity found isn't in this list at all — it's
+ * an IVF due date calculator ("ivf due date calculator" outdrew every article
+ * target measured, and outdrew "ivf app"). It needs no medical reviewer, so
+ * nothing blocks it. See docs/content-plan.md §Revised priority.
  */
 export const guides: Guide[] = [
   {
-    slug: "ivf-follicle-size-by-day",
-    title: "IVF Follicle Size by Day: A Stim-Cycle Chart",
+    slug: "two-week-wait-symptoms-day-by-day",
+    title: "Two-Week Wait Symptoms, Day by Day After Embryo Transfer",
     description:
-      "What follicle sizes to expect on each day of stimulation, how fast they grow, and what your clinic is looking for before trigger.",
-    category: "Medications",
-    excerpt: "What size follicles should be on each stim day, and why it varies.",
-    targetQuery: "ivf follicle size by day",
-    format: "Day-by-day chart with mm ranges",
-    // Weakest competition found: a personal blog holds a top position.
-    linksTo: ["/ivf-results-tracker", "/ivf-medication-tracker"],
+      "What's happening after an embryo transfer day by day, and why the symptoms you're watching for don't predict the outcome.",
+    category: "Emotional wellbeing",
+    excerpt: "What's happening each day — and why symptom-spotting misleads.",
+    // Target the IVF-qualified phrasing, NOT bare "two week wait" — that term
+    // collides with the UK NHS cancer referral pathway at totally different
+    // intent (see the "two week wait referral/pathway" autocompletes).
+    targetQuery: "after embryo transfer day by day",
+    demand: "Highest of the article set. Mixed-quality SERP, no dominant authority.",
+    format: "One page, section per day (3–10), matching the autocomplete ladder",
+    // Every ranking page lists symptoms; none lead with the fact that
+    // progesterone causes most of them. That framing is the whole opening.
+    linksTo: ["/ivf-symptom-tracker"],
     sections: [],
     references: [],
     reviewer: null,
@@ -101,16 +119,21 @@ export const guides: Guide[] = [
     status: "draft",
   },
   {
-    slug: "ivf-medication-schedule-template",
-    title: "IVF Medication Schedule Template (Free Printable)",
+    slug: "ivf-printable-calendar",
+    title: "IVF Calendar & Medication Schedule (Free Printable)",
     description:
-      "A printable stim-cycle medication schedule, plus how to lay out injections, pills, and trigger timing so nothing gets missed.",
+      "A printable IVF calendar and stim medication schedule, plus how to lay out injections, pills, and trigger timing so nothing gets missed.",
     category: "Medications",
-    excerpt: "A printable schedule, and how to lay your protocol out.",
-    targetQuery: "ivf medication schedule template",
-    format: "Printable template + explanation",
-    // Strongest commercial intent on the slate. Bonzun's medication-tracker
-    // feature page ranks on this SERP — direct proof the pattern works.
+    excerpt: "A printable calendar and schedule, and how to lay your protocol out.",
+    targetQuery: "ivf printable calendar",
+    // The exact phrase "ivf medication schedule" measured ~1, but the printable
+    // cluster is wider than that phrase and people are buying paper trackers on
+    // Etsy. CONFIRM IN KEYWORD PLANNER before writing.
+    demand: "Unconfirmed — exact phrase low, surrounding cluster looks larger.",
+    format: "Downloadable PDF + explanation",
+    // Strongest commercial intent on the slate: someone printing a med schedule
+    // is exactly the user. Bonzun's medication-tracker feature page ranks on
+    // this SERP — direct proof the feature-page pattern works here.
     linksTo: ["/ivf-medication-tracker"],
     sections: [],
     references: [],
@@ -120,17 +143,16 @@ export const guides: Guide[] = [
     status: "draft",
   },
   {
-    slug: "two-week-wait-symptoms-day-by-day",
-    title: "Two-Week Wait Symptoms, Day by Day After Embryo Transfer",
+    slug: "ivf-follicle-size-by-day",
+    title: "IVF Follicle Size by Day: A Stim-Cycle Chart",
     description:
-      "What's happening after an embryo transfer day by day, and why the symptoms you're watching for don't predict the outcome.",
-    category: "Emotional wellbeing",
-    excerpt: "What's happening each day — and why symptom-spotting misleads.",
-    targetQuery: "two week wait symptoms day by day",
-    format: "Day-by-day timeline",
-    // Every ranking page lists symptoms; none lead with the fact that
-    // progesterone causes most of them. That's the opening.
-    linksTo: ["/ivf-symptom-tracker"],
+      "What follicle sizes to expect on each day of stimulation, how fast they grow, and what your clinic is looking for before trigger.",
+    category: "Medications",
+    excerpt: "What size follicles should be on each stim day, and why it varies.",
+    targetQuery: "ivf follicle size by day",
+    demand: "Low, but the weakest competition found anywhere — a personal blog ranks.",
+    format: "One page, section per stim day (4–12), with mm ranges",
+    linksTo: ["/ivf-results-tracker", "/ivf-medication-tracker"],
     sections: [],
     references: [],
     reviewer: null,
@@ -146,9 +168,10 @@ export const guides: Guide[] = [
     category: "Results & testing",
     excerpt: "Every number in the retrieval funnel, and why attrition is normal.",
     targetQuery: "how many eggs make it to blastocyst",
+    demand: "Harder SERP — Liv Hospital holds multiple positions.",
     format: "Funnel diagram with attrition percentages",
-    // Harder SERP (more clinic authority) and the weakest fit for a GP
-    // reviewer. Consider scoping to terminology until specialist input exists.
+    // Perfect product match, but the weakest fit for a GP reviewer. Consider
+    // scoping to terminology until specialist input exists.
     linksTo: ["/ivf-results-tracker"],
     sections: [],
     references: [],
@@ -165,9 +188,9 @@ export const guides: Guide[] = [
     category: "Getting started",
     excerpt: "How a full cycle is laid out, from suppression to transfer.",
     targetQuery: "ivf calendar timeline",
+    demand: "Toughest set on the list — established clinics hold it.",
     format: "Phase-by-phase timeline",
-    // Toughest set on the list — established clinics hold it. Write last,
-    // once the cluster has some topical footing.
+    // Write last, once the cluster has some topical footing.
     linksTo: ["/ivf-medication-tracker"],
     sections: [],
     references: [],
