@@ -41,9 +41,9 @@ const Footer = () => {
               <li>
                 <Link to="/ivf-due-date-calculator" className="hover:text-primary transition-colors">Due Date Calculator</Link>
               </li>
-              <li>
-                <Link to="/about" className="hover:text-primary transition-colors">About</Link>
-              </li>
+              {/* About is unlinked until its placeholder copy is filled in —
+                  see the noindex note in src/lib/seo.ts. Restore this alongside
+                  clearing that flag. */}
               <li>
                 <Link to="/editorial-standards" className="hover:text-primary transition-colors">Editorial Standards</Link>
               </li>

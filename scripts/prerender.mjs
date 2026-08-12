@@ -26,8 +26,12 @@ const { render, prerenderRoutes, renderSitemap } = await import(
   pathToFileURL(path.join(dist, "server", "entry-server.js")).href
 );
 
+// Strip the authoring note above the marker — it's guidance for whoever edits
+// index.html, not something to ship on every page.
+const base = template.replace(/<!--\s*Route-specific tags[\s\S]*?-->\s*/, "");
+
 const fill = (head, body) =>
-  template.replace("<!--app-head-->", head).replace("<!--app-html-->", body);
+  base.replace("<!--app-head-->", head).replace("<!--app-html-->", body);
 
 // The 404 shell renders client-side; give it the homepage head so unfurlers
 // hitting an unknown URL still get sane tags. useDocumentMeta() corrects the

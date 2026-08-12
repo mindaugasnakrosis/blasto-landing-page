@@ -14,7 +14,7 @@ import {
 import { faqs } from "@/lib/faqs";
 import { calculatorFaqs } from "@/lib/calculatorFaqs";
 import { featurePages } from "@/lib/featurePages";
-import { guides, publishBlockers, type Guide } from "@/lib/guides";
+import { guides, publishBlockers, publishedGuides, type Guide } from "@/lib/guides";
 
 const Probe = () => {
   useDocumentMeta();
@@ -165,6 +165,25 @@ describe("guides", () => {
       reviewedOn: "2026-08-12",
     };
     expect(publishBlockers(ready)).toEqual([]);
+  });
+});
+
+describe("unfinished pages stay out of the index", () => {
+  // These guard a deploy, not a ranking. Both pages contain placeholder or
+  // developer-facing text; the failure mode is publishing it, not losing
+  // traffic. Clear the assertion deliberately when the copy is real.
+  it("keeps /about noindex while it still has bracketed placeholders", () => {
+    expect(getRouteMeta("/about").noindex).toBe(true);
+    expect(renderSitemap()).not.toContain("/about");
+  });
+
+  it("never lists a draft guide on the public hub", () => {
+    // publishedGuides() is what Guides.tsx renders — drafts must not appear.
+    for (const guide of publishedGuides()) {
+      expect(guide.status).toBe("published");
+      expect(guide.sections.length).toBeGreaterThan(0);
+      expect(guide.reviewer).not.toBeNull();
+    }
   });
 });
 

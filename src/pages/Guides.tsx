@@ -1,20 +1,19 @@
 import { Link } from "react-router-dom";
 import { FileText } from "lucide-react";
 import PageShell from "@/components/PageShell";
-import { guideCategories, guides, publishedGuides } from "@/lib/guides";
+import { guideCategories, publishedGuides } from "@/lib/guides";
 
 /**
  * The guides hub — the centre of the content cluster.
  *
- * In production this lists published guides grouped by category. Until any are
- * published it shows the planned slate instead, so the structure is reviewable
- * without putting thin pages in front of crawlers (the hub itself is indexable;
- * the draft articles are not).
+ * Lists ONLY published guides. Drafts are deliberately not linked from here:
+ * they render developer-facing placeholder text, and a visitor arriving on one
+ * from a public hub page is a worse outcome than an empty hub. Drafts stay
+ * reachable by direct URL for previewing, and stay noindex.
  */
 const Guides = () => {
-  const published = publishedGuides();
-  const isEmpty = published.length === 0;
-  const shown = isEmpty ? guides : published;
+  const shown = publishedGuides();
+  const isEmpty = shown.length === 0;
 
   return (
     <PageShell>
@@ -29,11 +28,18 @@ const Guides = () => {
       </p>
 
       {isEmpty && (
-        <p className="mt-6 rounded-xl border border-amber-500/40 bg-amber-500/10 p-4 text-sm leading-relaxed text-muted-foreground">
-          <span className="font-semibold text-foreground">Planned articles.</span>{" "}
-          None are published yet — each needs body copy, sources, and a named
-          medical reviewer first. They stay noindex and out of the sitemap until
-          then.
+        <p className="mt-6 rounded-xl border border-border/60 bg-blasto-cream/60 p-5 text-sm leading-relaxed text-muted-foreground">
+          <span className="font-semibold text-foreground">
+            Our first guides are being written.
+          </span>{" "}
+          Every one is reviewed by a clinician before it goes up, which takes a
+          little longer — we'd rather publish nothing than publish something
+          unchecked. In the meantime, the due date calculator below is ready to
+          use, and{" "}
+          <a href="/#beta-access" className="underline hover:text-foreground">
+            beta members
+          </a>{" "}
+          hear first when new guides land.
         </p>
       )}
 
@@ -62,11 +68,6 @@ const Guides = () => {
                         <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
                           {guide.excerpt}
                         </p>
-                        {guide.status === "draft" && (
-                          <span className="mt-2 inline-block rounded-full bg-amber-500/15 px-2 py-0.5 text-xs font-medium text-amber-700">
-                            Draft
-                          </span>
-                        )}
                       </div>
                     </Link>
                   </li>

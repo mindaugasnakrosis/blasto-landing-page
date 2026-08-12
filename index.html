@@ -20,12 +20,11 @@
       rel="stylesheet"
     />
 
-    <!--
-      Route-specific tags (title, description, canonical, og/twitter, JSON-LD)
-      are injected here at build time from src/lib/seo.ts. Do not hardcode them
-      above — a static canonical would point every route at the homepage.
-      In `vite dev` this stays empty and useDocumentMeta() fills it in.
-    -->
+    <!-- Route-specific tags are injected at the marker below during the build.
+         Never hardcode title/description/canonical/JSON-LD above it: a static
+         canonical would point every route at the homepage and deindex the rest.
+         Source of truth is src/lib/seo.ts; `vite dev` fills this in on the
+         client via useDocumentMeta(). This comment is stripped at build. -->
     <!--app-head-->
   </head>
 

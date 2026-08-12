@@ -69,6 +69,11 @@ const staticRoutes: RouteMeta[] = [
     path: "/about",
     lastmod: SITE_UPDATED,
     priority: "0.5",
+    // GATED: the page still contains [BRACKETED] placeholders and a drafted
+    // origin story that hasn't been confirmed as true. Publishing an unverified
+    // personal claim under the founder's name is not a thing to ship by
+    // accident. Remove this flag and the Footer link once the copy is real.
+    noindex: true,
   },
   {
     title: "Editorial Standards — How We Review Content | Blasto",
