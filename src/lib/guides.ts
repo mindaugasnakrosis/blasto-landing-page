@@ -51,6 +51,16 @@ export type Guide = {
   category: GuideCategory;
   /** One-line summary shown on the /guides hub. */
   excerpt: string;
+  /** The query this article is written to answer. See docs/content-plan.md
+   *  for the SERP evidence behind each one. */
+  targetQuery: string;
+  /** The shape the ranking results take for this query. These SERPs reward
+   *  charts, timelines, and templates over essays — match the format. */
+  format: string;
+  /** Feature-page slugs this article should link to from its body. Descriptive
+   *  anchors, varied per article — identical exact-match anchors across a whole
+   *  cluster read as manipulation. */
+  linksTo: string[];
   /** Body content. Empty on drafts. */
   sections: { heading: string; body: string }[];
   /** Sources the article cites. Required before publishing. */
@@ -63,20 +73,26 @@ export type Guide = {
 };
 
 /**
- * Planned articles, chosen to sit where a dedicated IVF app can compete.
- * These target "doing" queries — tracking, logging, understanding your own
- * numbers — rather than general "what is IVF" explainers, which are owned by
- * Flo, Mayo Clinic, and clinic sites with far more authority.
+ * Planned articles, ordered by how winnable the SERP looked in August 2026.
+ * Full evidence for each is in docs/content-plan.md — read it before changing
+ * the slate, and re-run the research before writing, since these move.
+ *
+ * The common thread: queries where the current page one is personal blogs and
+ * unmaintained clinic pages, not Flo or Mayo. General "what is IVF" explainers
+ * are deliberately absent — that fight is lost before it starts.
  */
 export const guides: Guide[] = [
   {
-    slug: "how-to-track-your-ivf-medications",
-    title: "How to Track Your IVF Medications Without Losing Your Mind",
+    slug: "ivf-follicle-size-by-day",
+    title: "IVF Follicle Size by Day: A Stim-Cycle Chart",
     description:
-      "A practical system for keeping stim injections, pills, and trigger timing straight through an IVF cycle.",
+      "What follicle sizes to expect on each day of stimulation, how fast they grow, and what your clinic is looking for before trigger.",
     category: "Medications",
-    excerpt:
-      "A practical system for keeping injections, pills, and trigger timing straight.",
+    excerpt: "What size follicles should be on each stim day, and why it varies.",
+    targetQuery: "ivf follicle size by day",
+    format: "Day-by-day chart with mm ranges",
+    // Weakest competition found: a personal blog holds a top position.
+    linksTo: ["/ivf-results-tracker", "/ivf-medication-tracker"],
     sections: [],
     references: [],
     reviewer: null,
@@ -85,28 +101,17 @@ export const guides: Guide[] = [
     status: "draft",
   },
   {
-    slug: "understanding-your-egg-retrieval-numbers",
-    title: "Understanding Your Egg Retrieval Numbers",
+    slug: "ivf-medication-schedule-template",
+    title: "IVF Medication Schedule Template (Free Printable)",
     description:
-      "What eggs retrieved, mature, fertilized, and blastocyst actually mean — and why the drop-off at each stage is normal.",
-    category: "Results & testing",
-    excerpt:
-      "What each number in the retrieval funnel means, and why attrition is expected.",
-    sections: [],
-    references: [],
-    reviewer: null,
-    reviewedOn: null,
-    lastmod: "2026-08-12",
-    status: "draft",
-  },
-  {
-    slug: "what-to-track-during-stims",
-    title: "What to Track During Stims (and What to Skip)",
-    description:
-      "Which symptoms and measurements are worth logging during ovarian stimulation, and which just add anxiety.",
+      "A printable stim-cycle medication schedule, plus how to lay out injections, pills, and trigger timing so nothing gets missed.",
     category: "Medications",
-    excerpt:
-      "Which symptoms are worth logging during stimulation, and which just add anxiety.",
+    excerpt: "A printable schedule, and how to lay your protocol out.",
+    targetQuery: "ivf medication schedule template",
+    format: "Printable template + explanation",
+    // Strongest commercial intent on the slate. Bonzun's medication-tracker
+    // feature page ranks on this SERP — direct proof the pattern works.
+    linksTo: ["/ivf-medication-tracker"],
     sections: [],
     references: [],
     reviewer: null,
@@ -115,26 +120,55 @@ export const guides: Guide[] = [
     status: "draft",
   },
   {
-    slug: "questions-to-ask-at-your-ivf-consultation",
-    title: "Questions to Ask at Your First IVF Consultation",
+    slug: "two-week-wait-symptoms-day-by-day",
+    title: "Two-Week Wait Symptoms, Day by Day After Embryo Transfer",
     description:
-      "A checklist of questions to bring to an initial fertility consultation, and notes on what the answers tell you.",
-    category: "Getting started",
-    excerpt: "A checklist to bring to your first appointment.",
-    sections: [],
-    references: [],
-    reviewer: null,
-    reviewedOn: null,
-    lastmod: "2026-08-12",
-    status: "draft",
-  },
-  {
-    slug: "surviving-the-two-week-wait",
-    title: "Surviving the Two-Week Wait",
-    description:
-      "What's happening after an embryo transfer, why symptom-spotting misleads, and ways through the waiting.",
+      "What's happening after an embryo transfer day by day, and why the symptoms you're watching for don't predict the outcome.",
     category: "Emotional wellbeing",
-    excerpt: "Why symptom-spotting misleads, and what actually helps.",
+    excerpt: "What's happening each day — and why symptom-spotting misleads.",
+    targetQuery: "two week wait symptoms day by day",
+    format: "Day-by-day timeline",
+    // Every ranking page lists symptoms; none lead with the fact that
+    // progesterone causes most of them. That's the opening.
+    linksTo: ["/ivf-symptom-tracker"],
+    sections: [],
+    references: [],
+    reviewer: null,
+    reviewedOn: null,
+    lastmod: "2026-08-12",
+    status: "draft",
+  },
+  {
+    slug: "egg-retrieval-numbers-explained",
+    title: "Egg Retrieval Numbers Explained: From Eggs to Blastocysts",
+    description:
+      "What eggs retrieved, mature, fertilized, and blastocyst actually mean, and why the drop-off at each stage is expected.",
+    category: "Results & testing",
+    excerpt: "Every number in the retrieval funnel, and why attrition is normal.",
+    targetQuery: "how many eggs make it to blastocyst",
+    format: "Funnel diagram with attrition percentages",
+    // Harder SERP (more clinic authority) and the weakest fit for a GP
+    // reviewer. Consider scoping to terminology until specialist input exists.
+    linksTo: ["/ivf-results-tracker"],
+    sections: [],
+    references: [],
+    reviewer: null,
+    reviewedOn: null,
+    lastmod: "2026-08-12",
+    status: "draft",
+  },
+  {
+    slug: "ivf-calendar-timeline",
+    title: "The IVF Calendar: A Full Cycle, Phase by Phase",
+    description:
+      "How an IVF cycle is laid out from suppression through transfer, with the appointments and decisions at each phase.",
+    category: "Getting started",
+    excerpt: "How a full cycle is laid out, from suppression to transfer.",
+    targetQuery: "ivf calendar timeline",
+    format: "Phase-by-phase timeline",
+    // Toughest set on the list — established clinics hold it. Write last,
+    // once the cluster has some topical footing.
+    linksTo: ["/ivf-medication-tracker"],
     sections: [],
     references: [],
     reviewer: null,
