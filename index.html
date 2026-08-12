@@ -3,38 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Blasto — Nurturing Every Step of Your Fertility Journey</title>
-    <meta
-      name="description"
-      content="Blasto is an iPhone app for your IVF journey: track cycles, medications, and appointments, log symptoms, see your results clearly, and talk to a supportive AI companion. Private by design — your data is never sold."
-    />
     <meta name="author" content="Blasto" />
-    <link rel="canonical" href="https://blastoivf.com/" />
     <meta name="theme-color" content="#f8f5f1" />
 
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     <meta property="og:site_name" content="Blasto" />
-    <meta property="og:title" content="Blasto — Your IVF Journey Companion" />
-    <meta
-      property="og:description"
-      content="Track IVF cycles, medications, appointments, and results in one calm, supportive iPhone app. Private by design — your data is never sold."
-    />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://blastoivf.com/" />
-    <meta property="og:image" content="https://blastoivf.com/og-image.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Blasto — Your IVF Journey Companion" />
-    <meta
-      name="twitter:description"
-      content="Track IVF cycles, medications, appointments, and results in one calm, supportive iPhone app."
-    />
-    <meta name="twitter:image" content="https://blastoivf.com/og-image.jpg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -43,37 +20,13 @@
       rel="stylesheet"
     />
 
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "Organization",
-            "@id": "https://blastoivf.com/#organization",
-            "name": "Blasto",
-            "url": "https://blastoivf.com/",
-            "logo": "https://blastoivf.com/logo.png",
-            "email": "support@blastoivf.com"
-          },
-          {
-            "@type": "WebSite",
-            "@id": "https://blastoivf.com/#website",
-            "url": "https://blastoivf.com/",
-            "name": "Blasto",
-            "publisher": { "@id": "https://blastoivf.com/#organization" }
-          },
-          {
-            "@type": "MobileApplication",
-            "name": "Blasto",
-            "operatingSystem": "iOS",
-            "applicationCategory": "HealthApplication",
-            "description": "Blasto helps you track IVF cycles, medications, appointments, symptoms, and results — with a supportive AI companion and a private community.",
-            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-            "publisher": { "@id": "https://blastoivf.com/#organization" }
-          }
-        ]
-      }
-    </script>
+    <!--
+      Route-specific tags (title, description, canonical, og/twitter, JSON-LD)
+      are injected here at build time from src/lib/seo.ts. Do not hardcode them
+      above — a static canonical would point every route at the homepage.
+      In `vite dev` this stays empty and useDocumentMeta() fills it in.
+    -->
+    <!--app-head-->
   </head>
 
   <body>

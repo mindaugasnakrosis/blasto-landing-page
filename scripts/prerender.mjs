@@ -3,10 +3,11 @@
  *
  * Runs after `vite build` (client) and `vite build --ssr` (server bundle):
  *   1. keeps dist/index.html as the template
- *   2. writes dist/404.html as the plain SPA shell (GitHub Pages fallback
- *      for unknown routes, rendered client-side)
- *   3. renders /, /privacy, /terms to static HTML so crawlers, link
- *      unfurlers, and curl see real content
+ *   2. writes dist/404.html as the SPA shell (GitHub Pages fallback for
+ *      unknown routes, rendered client-side) with the homepage head
+ *   3. renders each prerendered route to static HTML — body *and* head — so
+ *      crawlers, link unfurlers, and curl see real content with the right
+ *      title and canonical for that URL
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -15,27 +16,37 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 const dist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../dist");
 const template = fs.readFileSync(path.join(dist, "index.html"), "utf-8");
 
-if (!template.includes("<!--app-html-->")) {
-  throw new Error("dist/index.html is missing the <!--app-html--> placeholder");
+for (const marker of ["<!--app-html-->", "<!--app-head-->"]) {
+  if (!template.includes(marker)) {
+    throw new Error(`dist/index.html is missing the ${marker} placeholder`);
+  }
 }
 
-fs.writeFileSync(path.join(dist, "404.html"), template);
-
-const { render } = await import(
+const { render, prerenderRoutes } = await import(
   pathToFileURL(path.join(dist, "server", "entry-server.js")).href
 );
 
-const routes = ["/", "/privacy", "/terms"];
-for (const url of routes) {
-  const appHtml = render(url);
-  const html = template.replace("<!--app-html-->", appHtml);
+const fill = (head, body) =>
+  template.replace("<!--app-head-->", head).replace("<!--app-html-->", body);
+
+// The 404 shell renders client-side; give it the homepage head so unfurlers
+// hitting an unknown URL still get sane tags. useDocumentMeta() corrects the
+// title once the route resolves in the browser.
+const { head: homeHead } = render("/");
+fs.writeFileSync(path.join(dist, "404.html"), fill(homeHead, ""));
+
+for (const url of prerenderRoutes) {
+  const { html: appHtml, head } = render(url);
+  const html = fill(head, appHtml);
   const file =
     url === "/"
       ? path.join(dist, "index.html")
       : path.join(dist, url.slice(1), "index.html");
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, html);
-  console.log(`prerendered ${url} -> ${path.relative(dist, file)} (${(html.length / 1024).toFixed(0)} kB)`);
+  console.log(
+    `prerendered ${url} -> ${path.relative(dist, file)} (${(html.length / 1024).toFixed(0)} kB)`
+  );
 }
 
 fs.rmSync(path.join(dist, "server"), { recursive: true, force: true });

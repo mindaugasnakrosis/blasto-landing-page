@@ -41,8 +41,8 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15 }}
           >
-            Nurturing every step of your{" "}
-            <span className="text-gradient">fertility journey</span>
+            The IVF app that keeps your{" "}
+            <span className="text-gradient">cycle organized</span>
           </motion.h1>
 
           <motion.p
@@ -51,9 +51,9 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            Blasto is an iPhone app that keeps your IVF cycle organized — medications,
-            appointments, symptoms, and results — with a supportive voice companion
-            by your side the whole way.
+            Nurturing every step of your fertility journey — medications, appointments,
+            symptoms, and results in one calm iPhone app, with a supportive voice
+            companion by your side the whole way.
           </motion.p>
 
           <motion.div
