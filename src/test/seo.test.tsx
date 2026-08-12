@@ -12,6 +12,7 @@ import {
   routeMeta,
 } from "@/lib/seo";
 import { faqs } from "@/lib/faqs";
+import { calculatorFaqs } from "@/lib/calculatorFaqs";
 import { featurePages } from "@/lib/featurePages";
 import { guides, publishBlockers, type Guide } from "@/lib/guides";
 
@@ -57,10 +58,26 @@ describe("renderHead", () => {
     expect(html).toContain('href="https://blastoivf.com/privacy"');
   });
 
-  it("puts FAQ and app markup on the homepage only", () => {
-    expect(renderHead("/")).toContain("FAQPage");
-    expect(renderHead("/privacy")).not.toContain("FAQPage");
+  it("puts app markup on the homepage only", () => {
+    expect(renderHead("/")).toContain("MobileApplication");
     expect(renderHead("/privacy")).not.toContain("MobileApplication");
+  });
+
+  it("emits FAQ markup only where a visible FAQ is rendered", () => {
+    expect(renderHead("/")).toContain("FAQPage");
+    expect(renderHead("/ivf-due-date-calculator")).toContain("FAQPage");
+    expect(renderHead("/privacy")).not.toContain("FAQPage");
+    expect(renderHead("/guides")).not.toContain("FAQPage");
+  });
+
+  it("gives the calculator its own FAQ set, not the homepage's", () => {
+    const ld = renderHead("/ivf-due-date-calculator").match(
+      /<script type="application\/ld\+json">([\s\S]*?)<\/script>/
+    )![1];
+    const graph = JSON.parse(ld.replace(/\\u003c/g, "<"))["@graph"];
+    const faq = graph.find((n: { "@type": string }) => n["@type"] === "FAQPage");
+    expect(faq.mainEntity).toHaveLength(calculatorFaqs.length);
+    expect(faq.mainEntity[0].name).toBe(calculatorFaqs[0].q);
   });
 
   it("leaves no literal '<' inside the JSON-LD payload", () => {

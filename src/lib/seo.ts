@@ -13,7 +13,8 @@
  * Only hand-written routes need an entry in `staticRoutes` below.
  */
 import { SITE_URL, SUPPORT_EMAIL } from "./site";
-import { faqs } from "./faqs";
+import { faqs, type Faq } from "./faqs";
+import { calculatorFaqs } from "./calculatorFaqs";
 import { featurePages } from "./featurePages";
 import { guides } from "./guides";
 
@@ -44,6 +45,14 @@ const staticRoutes: RouteMeta[] = [
     path: "/",
     lastmod: SITE_UPDATED,
     priority: "1.0",
+  },
+  {
+    title: "IVF Due Date Calculator — Transfer & Retrieval | Blasto",
+    description:
+      "Calculate your IVF due date from an embryo transfer or egg retrieval date. Works for fresh and frozen day 3, 5, and 6 transfers, with milestone dates.",
+    path: "/ivf-due-date-calculator",
+    lastmod: SITE_UPDATED,
+    priority: "0.9",
   },
   {
     title: "IVF Guides — Tracking, Results & What to Expect | Blasto",
@@ -162,15 +171,27 @@ const application = {
   publisher: { "@id": `${SITE_URL}/#organization` },
 };
 
-const faqPage = {
-  "@type": "FAQPage",
-  "@id": `${SITE_URL}/#faq`,
-  mainEntity: faqs.map((f) => ({
-    "@type": "Question",
-    name: f.q,
-    acceptedAnswer: { "@type": "Answer", text: f.a },
-  })),
+/** Pages that render a visible FAQ block. The markup is generated from the
+ *  same array the page renders, so the two can never drift — FAQPage markup
+ *  that doesn't match on-page text is treated as spam. */
+const faqsByPath: Record<string, Faq[]> = {
+  "/": faqs,
+  "/ivf-due-date-calculator": calculatorFaqs,
 };
+
+function faqPageFor(path: string): object | null {
+  const pageFaqs = faqsByPath[path];
+  if (!pageFaqs) return null;
+  return {
+    "@type": "FAQPage",
+    "@id": `${SITE_URL}${path === "/" ? "/" : path}#faq`,
+    mainEntity: pageFaqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+}
 
 /** Article markup for a published guide. Drafts get none — claiming a
  *  reviewer that doesn't exist is exactly the signal not to fake. */
@@ -202,7 +223,10 @@ export function structuredDataFor(pathname: string): object {
   const meta = getRouteMeta(pathname);
   const graph: object[] = [organization, website];
 
-  if (meta.path === "/") graph.push(application, faqPage);
+  if (meta.path === "/") graph.push(application);
+
+  const faqPage = faqPageFor(meta.path);
+  if (faqPage) graph.push(faqPage);
 
   const article = guideArticle(meta.path);
   if (article) graph.push(article);

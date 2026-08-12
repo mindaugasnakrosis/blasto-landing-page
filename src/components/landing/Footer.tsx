@@ -39,6 +39,9 @@ const Footer = () => {
                 <Link to="/guides" className="hover:text-primary transition-colors">IVF Guides</Link>
               </li>
               <li>
+                <Link to="/ivf-due-date-calculator" className="hover:text-primary transition-colors">Due Date Calculator</Link>
+              </li>
+              <li>
                 <Link to="/about" className="hover:text-primary transition-colors">About</Link>
               </li>
               <li>

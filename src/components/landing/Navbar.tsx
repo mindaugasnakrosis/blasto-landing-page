@@ -5,7 +5,7 @@ import blastoLogo from "@/assets/blasto-logo.png";
 const links = [
   { href: "/#features", label: "Features" },
   { href: "/guides", label: "Guides" },
-  { href: "/#privacy", label: "Privacy" },
+  { href: "/ivf-due-date-calculator", label: "Due date calculator" },
   { href: "/#faq", label: "FAQ" },
 ];
 

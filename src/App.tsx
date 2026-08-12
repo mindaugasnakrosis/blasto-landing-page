@@ -13,6 +13,7 @@ import TermsOfService from "./pages/TermsOfService";
 import FeatureDetail from "./pages/FeatureDetail";
 import Guides from "./pages/Guides";
 import GuideDetail from "./pages/GuideDetail";
+import DueDateCalculator from "./pages/DueDateCalculator";
 import About from "./pages/About";
 import EditorialStandards from "./pages/EditorialStandards";
 
@@ -42,6 +43,7 @@ export const AppShell = () => (
           <Route key={page.slug} path={page.slug} element={<FeatureDetail page={page} />} />
         ))}
 
+        <Route path="/ivf-due-date-calculator" element={<DueDateCalculator />} />
         <Route path="/guides" element={<Guides />} />
         {guides.map((guide) => (
           <Route

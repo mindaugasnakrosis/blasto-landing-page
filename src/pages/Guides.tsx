@@ -77,6 +77,20 @@ const Guides = () => {
         })}
       </div>
 
+      <div className="mt-12 rounded-2xl border border-border/60 bg-blasto-cream/60 p-6">
+        <h2 className="font-semibold">IVF due date calculator</h2>
+        <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+          Work out your due date from an embryo transfer or egg retrieval date, for
+          fresh or frozen day 3, 5, and 6 transfers.
+        </p>
+        <Link
+          to="/ivf-due-date-calculator"
+          className="mt-3 inline-block text-sm font-semibold text-blasto-sage-dark hover:text-primary transition-colors"
+        >
+          Open the calculator →
+        </Link>
+      </div>
+
       <nav className="mt-14 border-t border-border/50 pt-7 text-sm">
         <h2 className="font-semibold text-foreground">What Blasto does</h2>
         <ul className="mt-3 space-y-2">
