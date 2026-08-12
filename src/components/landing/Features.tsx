@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { motion } from "framer-motion";
-import { Mic, Pill, HeartPulse, BarChart3, BookOpen, Check } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Mic, Pill, HeartPulse, BarChart3, BookOpen, Check, ArrowRight } from "lucide-react";
 import { PhoneFrame, ScreenCompanion } from "./PhoneMockups";
 import { cn } from "@/lib/utils";
 import screenHome from "@/assets/screenshots/screen-home.png";
@@ -15,6 +16,10 @@ type Feature = {
   description: string;
   bullets: string[];
   screen: ReactNode;
+  /** Deep page for this feature. These links are what make the standalone
+   *  pages crawlable and pass the homepage's authority down to them. */
+  href: string;
+  linkLabel: string;
 };
 
 const features: Feature[] = [
@@ -34,6 +39,8 @@ const features: Feature[] = [
       "Never a substitute for your clinic's advice",
     ],
     screen: <ScreenCompanion />,
+    href: "/ivf-support-companion",
+    linkLabel: "More about the companion",
   },
   {
     icon: Pill,
@@ -51,6 +58,8 @@ const features: Feature[] = [
       "Your clinic, protocol, and treatment phase in one place",
     ],
     screen: <img src={screenHome} alt="Blasto home screen with today's medication tasks and reminders" />,
+    href: "/ivf-medication-tracker",
+    linkLabel: "More about medication tracking",
   },
   {
     icon: HeartPulse,
@@ -68,6 +77,8 @@ const features: Feature[] = [
       "Gentle reassurance, backed by real prevalence data",
     ],
     screen: <img src={screenSymptoms} alt="Blasto symptom tracking screen with intensity slider" />,
+    href: "/ivf-symptom-tracker",
+    linkLabel: "More about symptom tracking",
   },
   {
     icon: BarChart3,
@@ -85,6 +96,8 @@ const features: Feature[] = [
       "Every cycle kept for easy reference",
     ],
     screen: <img src={screenResults} alt="Blasto results screen showing an egg retrieval funnel chart" />,
+    href: "/ivf-results-tracker",
+    linkLabel: "More about results tracking",
   },
   {
     icon: BookOpen,
@@ -102,6 +115,8 @@ const features: Feature[] = [
       "Covers the emotional journey too",
     ],
     screen: <img src={screenLearn} alt="Blasto learn screen with articles matched to your treatment phase" />,
+    href: "/guides",
+    linkLabel: "Read the IVF guides",
   },
 ];
 
@@ -154,6 +169,15 @@ const Features = () => {
                     </li>
                   ))}
                 </ul>
+                <div>
+                  <Link
+                    to={feature.href}
+                    className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-blasto-sage-dark hover:text-primary transition-colors"
+                  >
+                    {feature.linkLabel}
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
               </div>
               <PhoneFrame className="w-[240px] sm:w-[270px]">{feature.screen}</PhoneFrame>
             </motion.div>

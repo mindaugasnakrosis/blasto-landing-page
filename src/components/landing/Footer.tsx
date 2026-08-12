@@ -22,11 +22,12 @@ const Footer = () => {
           </div>
 
           <div>
-            <p className="mb-3 text-sm font-semibold text-foreground">Product</p>
+            <p className="mb-3 text-sm font-semibold text-foreground">Features</p>
             <ul className="space-y-2.5 text-sm text-muted-foreground">
-              <li><a href="/#features" className="hover:text-primary transition-colors">Features</a></li>
-              <li><a href="/#privacy" className="hover:text-primary transition-colors">Privacy & Trust</a></li>
-              <li><a href="/#faq" className="hover:text-primary transition-colors">FAQ</a></li>
+              <li><Link to="/ivf-medication-tracker" className="hover:text-primary transition-colors">Medication tracker</Link></li>
+              <li><Link to="/ivf-symptom-tracker" className="hover:text-primary transition-colors">Symptom tracker</Link></li>
+              <li><Link to="/ivf-results-tracker" className="hover:text-primary transition-colors">Results tracker</Link></li>
+              <li><Link to="/ivf-support-companion" className="hover:text-primary transition-colors">Support companion</Link></li>
               <li><a href="/#beta-access" className="hover:text-primary transition-colors">Request Beta Access</a></li>
             </ul>
           </div>
@@ -34,6 +35,15 @@ const Footer = () => {
           <div>
             <p className="mb-3 text-sm font-semibold text-foreground">Company</p>
             <ul className="space-y-2.5 text-sm text-muted-foreground">
+              <li>
+                <Link to="/guides" className="hover:text-primary transition-colors">IVF Guides</Link>
+              </li>
+              <li>
+                <Link to="/about" className="hover:text-primary transition-colors">About</Link>
+              </li>
+              <li>
+                <Link to="/editorial-standards" className="hover:text-primary transition-colors">Editorial Standards</Link>
+              </li>
               <li>
                 <Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
               </li>

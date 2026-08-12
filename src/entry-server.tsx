@@ -1,7 +1,7 @@
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
 import { AppShell } from "./App";
-import { renderHead } from "./lib/seo";
+import { renderHead, renderSitemap, prerenderRoutes } from "./lib/seo";
 
 /**
  * Called by scripts/prerender.mjs at build time to emit static HTML per route.
@@ -18,6 +18,6 @@ export function render(url: string): { html: string; head: string } {
   return { html, head: renderHead(url) };
 }
 
-/** Routes prerendered at build time. Add new indexable routes here and in
- *  src/lib/seo.ts (and public/sitemap.xml). */
-export const prerenderRoutes = ["/", "/privacy", "/terms"];
+/** Re-exported for the prerender script: the routes to emit, and the sitemap
+ *  generated from the indexable subset of them. */
+export { prerenderRoutes, renderSitemap };

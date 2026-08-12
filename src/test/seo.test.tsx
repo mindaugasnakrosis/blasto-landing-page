@@ -2,8 +2,18 @@ import { describe, expect, it, beforeEach } from "vitest";
 import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
-import { canonicalFor, getRouteMeta, renderHead, routeMeta } from "@/lib/seo";
+import {
+  canonicalFor,
+  getRouteMeta,
+  indexableRoutes,
+  prerenderRoutes,
+  renderHead,
+  renderSitemap,
+  routeMeta,
+} from "@/lib/seo";
 import { faqs } from "@/lib/faqs";
+import { featurePages } from "@/lib/featurePages";
+import { guides, publishBlockers, type Guide } from "@/lib/guides";
 
 const Probe = () => {
   useDocumentMeta();
@@ -70,6 +80,89 @@ describe("renderHead", () => {
     const graph = JSON.parse(ld.replace(/\\u003c/g, "<"))["@graph"];
     const faq = graph.find((n: { "@type": string }) => n["@type"] === "FAQPage");
     expect(faq.mainEntity).toHaveLength(faqs.length);
+  });
+});
+
+describe("feature pages", () => {
+  it("registers every feature page as its own indexable route", () => {
+    for (const page of featurePages) {
+      const meta = getRouteMeta(page.slug);
+      expect(meta.path).toBe(page.slug);
+      expect(meta.noindex).toBeFalsy();
+    }
+  });
+
+  it("keeps the target phrase in each title", () => {
+    for (const page of featurePages) {
+      expect(page.title.toLowerCase()).toContain("ivf");
+    }
+  });
+
+  it("only links related slugs that exist", () => {
+    const slugs = new Set(featurePages.map((p) => p.slug));
+    for (const page of featurePages) {
+      for (const rel of page.related) expect(slugs.has(rel)).toBe(true);
+    }
+  });
+});
+
+describe("guides", () => {
+  it("keeps drafts out of the index and the sitemap", () => {
+    const sitemap = renderSitemap();
+    for (const guide of guides.filter((g) => g.status === "draft")) {
+      const path = `/guides/${guide.slug}`;
+      expect(getRouteMeta(path).noindex).toBe(true);
+      expect(renderHead(path)).toContain('content="noindex');
+      expect(sitemap).not.toContain(path);
+    }
+  });
+
+  it("still prerenders drafts so they are previewable", () => {
+    for (const guide of guides) {
+      expect(prerenderRoutes).toContain(`/guides/${guide.slug}`);
+    }
+  });
+
+  it("emits no article schema for an unreviewed guide", () => {
+    // Faking reviewedBy on content nobody reviewed is the one thing this
+    // scaffold must never do.
+    for (const guide of guides.filter((g) => !g.reviewer)) {
+      expect(renderHead(`/guides/${guide.slug}`)).not.toContain("reviewedBy");
+    }
+  });
+
+  it("blocks publishing until content, sources, and a reviewer exist", () => {
+    const bare = guides[0];
+    expect(publishBlockers(bare)).toEqual([
+      "body content",
+      "references",
+      "a named medical reviewer",
+      "a review date",
+    ]);
+
+    const ready: Guide = {
+      ...bare,
+      sections: [{ heading: "H", body: "B" }],
+      references: [{ label: "Source", url: "https://example.org" }],
+      reviewer: { name: "Dr. X", credentials: "MD" },
+      reviewedOn: "2026-08-12",
+    };
+    expect(publishBlockers(ready)).toEqual([]);
+  });
+});
+
+describe("sitemap", () => {
+  it("lists exactly the indexable routes, once each", () => {
+    const locs = [...renderSitemap().matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]);
+    expect(locs).toHaveLength(indexableRoutes.length);
+    expect(new Set(locs).size).toBe(locs.length);
+    expect(locs).toContain("https://blastoivf.com/ivf-medication-tracker");
+  });
+
+  it("gives every listed URL a prerendered route", () => {
+    for (const meta of indexableRoutes) {
+      expect(prerenderRoutes).toContain(meta.path);
+    }
   });
 });
 

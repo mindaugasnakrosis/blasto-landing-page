@@ -22,7 +22,7 @@ for (const marker of ["<!--app-html-->", "<!--app-head-->"]) {
   }
 }
 
-const { render, prerenderRoutes } = await import(
+const { render, prerenderRoutes, renderSitemap } = await import(
   pathToFileURL(path.join(dist, "server", "entry-server.js")).href
 );
 
@@ -48,6 +48,15 @@ for (const url of prerenderRoutes) {
     `prerendered ${url} -> ${path.relative(dist, file)} (${(html.length / 1024).toFixed(0)} kB)`
   );
 }
+
+// Generated rather than kept in public/, so a new route can't be added without
+// its sitemap entry. Draft guides are excluded — see src/lib/guides.ts.
+const sitemap = renderSitemap();
+fs.writeFileSync(path.join(dist, "sitemap.xml"), sitemap);
+console.log(
+  `sitemap.xml -> ${(sitemap.match(/<loc>/g) ?? []).length} indexable URLs ` +
+    `(${prerenderRoutes.length} routes prerendered)`
+);
 
 fs.rmSync(path.join(dist, "server"), { recursive: true, force: true });
 console.log("prerender complete");

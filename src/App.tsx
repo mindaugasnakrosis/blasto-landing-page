@@ -4,10 +4,17 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
+import { featurePages } from "@/lib/featurePages";
+import { guides } from "@/lib/guides";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
+import FeatureDetail from "./pages/FeatureDetail";
+import Guides from "./pages/Guides";
+import GuideDetail from "./pages/GuideDetail";
+import About from "./pages/About";
+import EditorialStandards from "./pages/EditorialStandards";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +35,24 @@ export const AppShell = () => (
       <DocumentMeta />
       <Routes>
         <Route path="/" element={<Index />} />
+
+        {/* Generated from the data modules — adding an entry there creates the
+            route, its head metadata (src/lib/seo.ts), and its sitemap line. */}
+        {featurePages.map((page) => (
+          <Route key={page.slug} path={page.slug} element={<FeatureDetail page={page} />} />
+        ))}
+
+        <Route path="/guides" element={<Guides />} />
+        {guides.map((guide) => (
+          <Route
+            key={guide.slug}
+            path={`/guides/${guide.slug}`}
+            element={<GuideDetail guide={guide} />}
+          />
+        ))}
+
+        <Route path="/about" element={<About />} />
+        <Route path="/editorial-standards" element={<EditorialStandards />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<TermsOfService />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
