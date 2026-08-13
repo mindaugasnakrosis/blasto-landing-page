@@ -38,3 +38,11 @@ companion feature block uses a stylized illustration
 (`ScreenCompanion` in `src/components/landing/PhoneMockups.tsx`) until a real
 screenshot of that screen exists — swap it the same way the other blocks
 use `<PhoneFrame><img …/></PhoneFrame>`.
+
+## Where things stand
+
+Outstanding work is tracked in [`docs/next-steps.md`](docs/next-steps.md) —
+start there. Supporting docs:
+
+- [`docs/content-plan.md`](docs/content-plan.md) — keyword research and the article slate
+- [`docs/medical-review-checklist.md`](docs/medical-review-checklist.md) — for the guide reviewer
