@@ -45,7 +45,7 @@ const MedicalReview = ({ guide }: { guide: Guide }) => {
 
   return (
     <div className="flex items-start gap-3 rounded-xl border border-border/60 bg-blasto-cream/60 p-4 text-sm">
-      <BadgeCheck className="mt-0.5 h-4 w-4 shrink-0 text-blasto-sage-dark" />
+      <BadgeCheck className="mt-0.5 h-4 w-4 shrink-0 text-blasto-rose-dark" />
       <div className="leading-relaxed">
         <p className="text-foreground">
           Medically reviewed by{" "}

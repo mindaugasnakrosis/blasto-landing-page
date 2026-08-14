@@ -150,7 +150,7 @@ const DueDateCalculator = () => {
         {/* Results */}
         {dueDate && (
           <div className="mt-8 border-t border-border/60 pt-8">
-            <p className="text-sm font-medium text-blasto-sage-dark">
+            <p className="text-sm font-medium text-blasto-rose-dark">
               Estimated due date
             </p>
             <p className="mt-1 text-2xl sm:text-3xl font-bold">{formatLong(dueDate)}</p>
@@ -185,7 +185,7 @@ const DueDateCalculator = () => {
             {upcoming.length > 0 && (
               <div className="mt-8">
                 <h2 className="flex items-center gap-2 text-sm font-semibold">
-                  <CalendarDays className="h-4 w-4 text-blasto-sage-dark" />
+                  <CalendarDays className="h-4 w-4 text-blasto-rose-dark" />
                   What's ahead
                 </h2>
                 <ul className="mt-3 divide-y divide-border/50">

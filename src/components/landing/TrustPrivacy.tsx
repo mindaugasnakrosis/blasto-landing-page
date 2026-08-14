@@ -53,7 +53,7 @@ const TrustPrivacy = () => {
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-                <point.icon className="h-6 w-6 text-blasto-sage-dark" />
+                <point.icon className="h-6 w-6 text-blasto-rose-dark" />
               </div>
               <h3 className="font-semibold text-lg mb-2">{point.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{point.description}</p>
@@ -68,7 +68,7 @@ const TrustPrivacy = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <Stethoscope className="mt-0.5 h-5 w-5 shrink-0 text-blasto-sage-dark" />
+          <Stethoscope className="mt-0.5 h-5 w-5 shrink-0 text-blasto-rose-dark" />
           <p className="text-sm text-muted-foreground leading-relaxed">
             <span className="font-semibold text-foreground">Blasto is not a medical device.</span>{" "}
             It's a personal tracking and support tool — it doesn't provide medical advice,

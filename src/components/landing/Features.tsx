@@ -153,7 +153,7 @@ const Features = () => {
               transition={{ duration: 0.6 }}
             >
               <div className="flex-1 text-center lg:text-left">
-                <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-blasto-sage-dark">
+                <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-blasto-rose-dark">
                   <feature.icon className="h-4 w-4" />
                   {feature.eyebrow}
                 </div>
@@ -163,7 +163,7 @@ const Features = () => {
                   {feature.bullets.map((b) => (
                     <li key={b} className="flex items-start gap-2.5 text-sm text-foreground/80">
                       <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/15">
-                        <Check className="h-3 w-3 text-blasto-sage-dark" strokeWidth={3} />
+                        <Check className="h-3 w-3 text-blasto-rose-dark" strokeWidth={3} />
                       </span>
                       {b}
                     </li>
@@ -172,7 +172,7 @@ const Features = () => {
                 <div>
                   <Link
                     to={feature.href}
-                    className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-blasto-sage-dark hover:text-primary transition-colors"
+                    className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-blasto-rose-dark hover:text-primary transition-colors"
                   >
                     {feature.linkLabel}
                     <ArrowRight className="h-3.5 w-3.5" />

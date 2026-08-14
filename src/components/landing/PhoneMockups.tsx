@@ -29,7 +29,7 @@ export const ScreenCompanion = () => (
       <div className="max-w-[85%] rounded-2xl rounded-tl-md bg-card px-3 py-2 text-[11px] leading-snug text-foreground shadow-sm">
         Your trigger shot is tonight at 9:00 PM. Feeling ready, or want to walk through it together?
       </div>
-      <div className="ml-auto max-w-[75%] rounded-2xl rounded-tr-md bg-blasto-sage-dark px-3 py-2 text-[11px] leading-snug text-white">
+      <div className="ml-auto max-w-[75%] rounded-2xl rounded-tr-md bg-blasto-rose-dark px-3 py-2 text-[11px] leading-snug text-white">
         A bit nervous. Can we go over the steps?
       </div>
       <div className="max-w-[85%] rounded-2xl rounded-tl-md bg-card px-3 py-2 text-[11px] leading-snug text-foreground shadow-sm">
@@ -38,11 +38,11 @@ export const ScreenCompanion = () => (
     </div>
     <div className="flex items-center justify-center gap-1.5 px-4 pb-3">
       {[10, 18, 26, 14, 22, 30, 16, 24, 12, 20, 15].map((h, i) => (
-        <span key={i} className="w-1 rounded-full bg-blasto-teal/70" style={{ height: `${h}px` }} />
+        <span key={i} className="w-1 rounded-full bg-blasto-berry/70" style={{ height: `${h}px` }} />
       ))}
     </div>
     <div className="px-4 pb-6">
-      <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blasto-sage-dark shadow-lg shadow-primary/30">
+      <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blasto-rose-dark shadow-lg shadow-primary/30">
         <Mic className="h-5 w-5 text-white" />
       </div>
     </div>

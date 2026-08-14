@@ -14,7 +14,7 @@ const GuideDetail = ({ guide }: { guide: Guide }) => (
       All guides
     </Link>
 
-    <p className="mt-6 text-sm font-medium text-blasto-sage-dark">{guide.category}</p>
+    <p className="mt-6 text-sm font-medium text-blasto-rose-dark">{guide.category}</p>
     <h1 className="mt-2 text-3xl sm:text-4xl font-bold leading-tight">{guide.title}</h1>
     <p className="mt-4 text-lg text-muted-foreground leading-relaxed">{guide.description}</p>
 

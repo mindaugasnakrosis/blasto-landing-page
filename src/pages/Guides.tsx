@@ -50,7 +50,7 @@ const Guides = () => {
 
           return (
             <section key={category}>
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-blasto-sage-dark">
+              <h2 className="text-sm font-semibold uppercase tracking-wide text-blasto-rose-dark">
                 {category}
               </h2>
               <ul className="mt-4 space-y-4">
@@ -60,7 +60,7 @@ const Guides = () => {
                       to={`/guides/${guide.slug}`}
                       className="group flex items-start gap-3 rounded-xl border border-border/60 bg-card p-5 transition-colors hover:border-primary/40"
                     >
-                      <FileText className="mt-0.5 h-4 w-4 shrink-0 text-blasto-sage-dark" />
+                      <FileText className="mt-0.5 h-4 w-4 shrink-0 text-blasto-rose-dark" />
                       <div>
                         <p className="font-semibold leading-snug group-hover:text-primary transition-colors">
                           {guide.title}
@@ -86,7 +86,7 @@ const Guides = () => {
         </p>
         <Link
           to="/ivf-due-date-calculator"
-          className="mt-3 inline-block text-sm font-semibold text-blasto-sage-dark hover:text-primary transition-colors"
+          className="mt-3 inline-block text-sm font-semibold text-blasto-rose-dark hover:text-primary transition-colors"
         >
           Open the calculator →
         </Link>

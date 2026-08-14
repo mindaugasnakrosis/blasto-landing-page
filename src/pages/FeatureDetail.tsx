@@ -30,7 +30,7 @@ const FeatureDetail = ({ page }: { page: FeaturePage }) => (
   <PageShell width="wide">
     <div className="grid items-start gap-12 lg:grid-cols-[1fr_280px]">
       <div>
-        <p className="text-sm font-medium text-blasto-sage-dark">{page.eyebrow}</p>
+        <p className="text-sm font-medium text-blasto-rose-dark">{page.eyebrow}</p>
         <h1 className="mt-2 text-3xl sm:text-4xl font-bold leading-tight">
           {page.h1} <span className="text-gradient">{page.h1Accent}</span>
         </h1>
@@ -40,7 +40,7 @@ const FeatureDetail = ({ page }: { page: FeaturePage }) => (
           {page.bullets.map((b) => (
             <li key={b} className="flex items-start gap-2.5 text-sm text-foreground/80">
               <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/15">
-                <Check className="h-3 w-3 text-blasto-sage-dark" strokeWidth={3} />
+                <Check className="h-3 w-3 text-blasto-rose-dark" strokeWidth={3} />
               </span>
               {b}
             </li>

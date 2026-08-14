@@ -12,8 +12,8 @@ const Hero = () => {
       {/* Floating decorative elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-20 left-[10%] w-64 h-64 rounded-full bg-primary/10 blur-3xl animate-float" />
-        <div className="absolute bottom-32 right-[15%] w-48 h-48 rounded-full bg-blasto-teal/15 blur-3xl animate-float-slow" />
-        <div className="absolute top-1/3 right-[10%] w-32 h-32 rounded-full bg-blasto-sage/20 blur-2xl animate-float" style={{ animationDelay: "2s" }} />
+        <div className="absolute bottom-32 right-[15%] w-48 h-48 rounded-full bg-blasto-berry/15 blur-3xl animate-float-slow" />
+        <div className="absolute top-1/3 right-[10%] w-32 h-32 rounded-full bg-blasto-rose/20 blur-2xl animate-float" style={{ animationDelay: "2s" }} />
       </div>
 
       <div className="container relative z-10 grid items-center gap-12 px-4 py-16 sm:py-24 lg:grid-cols-2 lg:gap-8">
@@ -92,7 +92,7 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <ShieldCheck className="h-4 w-4 text-blasto-sage-dark" />
+            <ShieldCheck className="h-4 w-4 text-blasto-rose-dark" />
             Private by design — your data is never sold. Free during beta.
           </motion.p>
         </div>

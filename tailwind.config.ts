@@ -58,12 +58,12 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
         blasto: {
-          sage: "hsl(var(--blasto-sage))",
-          "sage-dark": "hsl(var(--blasto-sage-dark))",
+          rose: "hsl(var(--blasto-rose))",
+          "rose-dark": "hsl(var(--blasto-rose-dark))",
           cream: "hsl(var(--blasto-cream))",
           gold: "hsl(var(--blasto-gold))",
-          teal: "hsl(var(--blasto-teal))",
-          mint: "hsl(var(--blasto-mint))",
+          berry: "hsl(var(--blasto-berry))",
+          blush: "hsl(var(--blasto-blush))",
         },
       },
       borderRadius: {
