@@ -16,9 +16,10 @@ import { Input } from "@/components/ui/input";
  * latter so the Firebase console's action URL can also point here.
  */
 
-// Same public web API key the app ships with (client keys identify the
-// project; they are not secrets).
-const FIREBASE_API_KEY = "AIzaSyCRxsRehpKQMiWZS7iLHdHUO-m8gggPJhQ";
+// No hardcoded Firebase key: every Firebase action link carries the project's
+// public web apiKey in its query string, and this page only ever runs from
+// such links. (The key is a public client identifier, not a secret — it ships
+// in the app binary too — but hardcoding it here trips secret scanners.)
 const IDENTITY_API = "https://identitytoolkit.googleapis.com/v1";
 
 type Status = "working" | "success" | "error" | "reset-form" | "reset-done";
@@ -62,7 +63,7 @@ const VerifyEmail = () => {
   const [params] = useSearchParams();
   const mode = params.get("mode") ?? "";
   const oobCode = params.get("oobCode") ?? "";
-  const apiKey = params.get("apiKey") || FIREBASE_API_KEY;
+  const apiKey = params.get("apiKey") ?? "";
 
   const [status, setStatus] = useState<Status>("working");
   const [error, setError] = useState("");
@@ -72,7 +73,7 @@ const VerifyEmail = () => {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    if (!oobCode || !["verifyEmail", "resetPassword"].includes(mode)) {
+    if (!oobCode || !apiKey || !["verifyEmail", "resetPassword"].includes(mode)) {
       setError("This link is missing its verification code. Use the full link from your email.");
       setStatus("error");
       return;
