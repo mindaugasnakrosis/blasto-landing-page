@@ -92,6 +92,16 @@ const staticRoutes: RouteMeta[] = [
     priority: "0.3",
   },
   {
+    title: "Verify Your Email — Blasto",
+    description: "Confirm your email address for your Blasto account.",
+    path: "/verify-email",
+    lastmod: SITE_UPDATED,
+    priority: "0.1",
+    // Email-action handler (verification / password-reset links land here).
+    // Not a destination page; keep it out of search.
+    noindex: true,
+  },
+  {
     title: "Terms of Service — Blasto IVF App",
     description:
       "The terms governing your use of Blasto, the IVF tracking app for iPhone. Blasto is not a medical device and does not provide medical advice.",

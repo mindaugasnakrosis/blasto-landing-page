@@ -16,6 +16,7 @@ import GuideDetail from "./pages/GuideDetail";
 import DueDateCalculator from "./pages/DueDateCalculator";
 import About from "./pages/About";
 import EditorialStandards from "./pages/EditorialStandards";
+import VerifyEmail from "./pages/VerifyEmail";
 
 const queryClient = new QueryClient();
 
@@ -57,6 +58,7 @@ export const AppShell = () => (
         <Route path="/editorial-standards" element={<EditorialStandards />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<TermsOfService />} />
+        <Route path="/verify-email" element={<VerifyEmail />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
