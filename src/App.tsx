@@ -9,6 +9,7 @@ import { guides } from "@/lib/guides";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import DeleteAccount from "./pages/DeleteAccount";
 import TermsOfService from "./pages/TermsOfService";
 import FeatureDetail from "./pages/FeatureDetail";
 import Guides from "./pages/Guides";
@@ -57,6 +58,9 @@ export const AppShell = () => (
         <Route path="/about" element={<About />} />
         <Route path="/editorial-standards" element={<EditorialStandards />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
+        {/* Google Play requires this URL to resolve for a signed-out visitor
+            with no app installed — it is submitted with the store listing. */}
+        <Route path="/delete-account" element={<DeleteAccount />} />
         <Route path="/terms" element={<TermsOfService />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

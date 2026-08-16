@@ -53,6 +53,11 @@ const Footer = () => {
               <li>
                 <Link to="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>
               </li>
+              {/* Linked, not just routed: Play wants the deletion path
+                  discoverable from the site, not only from the listing. */}
+              <li>
+                <Link to="/delete-account" className="hover:text-primary transition-colors">Delete Account</Link>
+              </li>
               <li>
                 <a
                   href={`mailto:${SUPPORT_EMAIL}`}

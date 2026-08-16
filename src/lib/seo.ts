@@ -88,8 +88,18 @@ const staticRoutes: RouteMeta[] = [
     description:
       "How Blasto collects, uses, and protects your IVF and fertility data. We never sell your data or share it with advertisers or data brokers.",
     path: "/privacy",
-    lastmod: SITE_UPDATED,
+    lastmod: "2026-08-16",
     priority: "0.3",
+  },
+  {
+    title: "Delete Your Account — Blasto",
+    description:
+      "How to delete your Blasto account and all of your data, from inside the app or by email. What gets deleted, what is kept, and for how long.",
+    path: "/delete-account",
+    lastmod: "2026-08-16",
+    priority: "0.3",
+    // Indexable on purpose: Google Play submits this URL with the listing and
+    // checks it resolves for a signed-out visitor. Keep it out of noindex.
   },
   {
     title: "Verify Your Email — Blasto",
