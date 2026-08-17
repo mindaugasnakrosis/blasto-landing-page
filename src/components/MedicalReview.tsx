@@ -58,7 +58,7 @@ const MedicalReview = ({ guide }: { guide: Guide }) => {
         </p>
         <p className="mt-1 text-muted-foreground">
           {guide.reviewedOn && <>Last reviewed {formatDate(guide.reviewedOn)}. </>}
-          <Link to="/editorial-standards" className="underline hover:text-foreground">
+          <Link to="/editorial-standards/" className="underline hover:text-foreground">
             How we review content
           </Link>
         </p>

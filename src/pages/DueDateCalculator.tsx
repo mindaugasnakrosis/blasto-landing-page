@@ -315,7 +315,7 @@ const DueDateCalculator = () => {
         <h2 className="text-xl font-bold">Track the whole cycle, not just the date</h2>
         <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
           Blasto keeps your medications, appointments, symptoms, and{" "}
-          <Link to="/ivf-results-tracker" className="underline hover:text-foreground">
+          <Link to="/ivf-results-tracker/" className="underline hover:text-foreground">
             retrieval results
           </Link>{" "}
           in one place through every phase of treatment. Free while it's in beta.
@@ -338,17 +338,17 @@ const DueDateCalculator = () => {
         <h2 className="font-semibold">Related</h2>
         <ul className="mt-3 space-y-2">
           <li>
-            <Link to="/guides" className="text-muted-foreground hover:text-primary transition-colors">
+            <Link to="/guides/" className="text-muted-foreground hover:text-primary transition-colors">
               IVF guides
             </Link>
           </li>
           <li>
-            <Link to="/ivf-medication-tracker" className="text-muted-foreground hover:text-primary transition-colors">
+            <Link to="/ivf-medication-tracker/" className="text-muted-foreground hover:text-primary transition-colors">
               Tracking your IVF medications
             </Link>
           </li>
           <li>
-            <Link to="/ivf-symptom-tracker" className="text-muted-foreground hover:text-primary transition-colors">
+            <Link to="/ivf-symptom-tracker/" className="text-muted-foreground hover:text-primary transition-colors">
               Logging symptoms through your cycle
             </Link>
           </li>

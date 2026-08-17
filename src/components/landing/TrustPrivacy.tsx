@@ -74,8 +74,8 @@ const TrustPrivacy = () => {
             It's a personal tracking and support tool — it doesn't provide medical advice,
             diagnosis, or treatment. Always follow the guidance of your fertility clinic and
             healthcare providers. See our{" "}
-            <Link to="/privacy" className="underline hover:text-foreground">Privacy Policy</Link> and{" "}
-            <Link to="/terms" className="underline hover:text-foreground">Terms of Service</Link>.
+            <Link to="/privacy/" className="underline hover:text-foreground">Privacy Policy</Link> and{" "}
+            <Link to="/terms/" className="underline hover:text-foreground">Terms of Service</Link>.
           </p>
         </motion.div>
       </div>

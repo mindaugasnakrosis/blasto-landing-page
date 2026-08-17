@@ -107,7 +107,7 @@ const About = () => (
           territory that belongs to a fertility specialist — embryology numbers,
           protocol choices — we say what she reviewed it for and what she didn't.
           Our{" "}
-          <Link to="/editorial-standards" className="underline hover:text-foreground">
+          <Link to="/editorial-standards/" className="underline hover:text-foreground">
             editorial standards
           </Link>{" "}
           set out the whole process.
@@ -131,7 +131,7 @@ const About = () => (
           record on handling it is not good. We don't sell it, we don't share it
           with advertisers or data brokers, and you can export or delete all of
           it whenever you want. The specifics are in our{" "}
-          <Link to="/privacy" className="underline hover:text-foreground">
+          <Link to="/privacy/" className="underline hover:text-foreground">
             Privacy Policy
           </Link>
           , written to be read rather than to cover us.

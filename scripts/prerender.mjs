@@ -22,9 +22,8 @@ for (const marker of ["<!--app-html-->", "<!--app-head-->"]) {
   }
 }
 
-const { render, prerenderRoutes, renderSitemap } = await import(
-  pathToFileURL(path.join(dist, "server", "entry-server.js")).href
-);
+const { render, prerenderRoutes, renderSitemap, renderNotFoundHead } =
+  await import(pathToFileURL(path.join(dist, "server", "entry-server.js")).href);
 
 // Strip the authoring note above the marker — it's guidance for whoever edits
 // index.html, not something to ship on every page.
@@ -33,11 +32,10 @@ const base = template.replace(/<!--\s*Route-specific tags[\s\S]*?-->\s*/, "");
 const fill = (head, body) =>
   base.replace("<!--app-head-->", head).replace("<!--app-html-->", body);
 
-// The 404 shell renders client-side; give it the homepage head so unfurlers
-// hitting an unknown URL still get sane tags. useDocumentMeta() corrects the
-// title once the route resolves in the browser.
-const { head: homeHead } = render("/");
-fs.writeFileSync(path.join(dist, "404.html"), fill(homeHead, ""));
+// The 404 shell renders client-side, so it gets a noindex head with no
+// canonical rather than the homepage's — see renderNotFoundHead().
+// useDocumentMeta() replaces it once the route resolves in the browser.
+fs.writeFileSync(path.join(dist, "404.html"), fill(renderNotFoundHead(), ""));
 
 for (const url of prerenderRoutes) {
   const { html: appHtml, head } = render(url);

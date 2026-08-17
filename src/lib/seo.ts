@@ -150,8 +150,26 @@ export function getRouteMeta(pathname: string): RouteMeta {
   return routeMeta[key] ?? routeMeta["/"];
 }
 
+/**
+ * The site's one true URL shape: a trailing slash on every path.
+ *
+ * Prerendering writes each route to `<route>/index.html`, and GitHub Pages
+ * serves that only at `/<route>/` — it 301s `/<route>` to the slashed form.
+ * So the slashed URL is the one that actually returns 200, and it is the one
+ * that has to appear in canonicals, the sitemap, and every internal link.
+ * Point any of those at the bare path and Google sees a redirect instead of a
+ * page: "Page with redirect" for the sitemap entries, and a canonical that
+ * redirects to the URL declaring it.
+ *
+ * Route definitions and `routeMeta` keys stay unslashed — React Router matches
+ * "/guides/" against path="/guides", and getRouteMeta() strips the slash.
+ */
+export function hrefFor(path: string): string {
+  return path === "/" ? "/" : `${path.replace(/\/+$/, "")}/`;
+}
+
 export function canonicalFor(meta: RouteMeta): string {
-  return meta.path === "/" ? `${SITE_URL}/` : `${SITE_URL}${meta.path}`;
+  return `${SITE_URL}${hrefFor(meta.path)}`;
 }
 
 /** Routes prerendered at build time — everything, including noindex drafts,
@@ -209,7 +227,7 @@ function faqPageFor(path: string): object | null {
   if (!pageFaqs) return null;
   return {
     "@type": "FAQPage",
-    "@id": `${SITE_URL}${path === "/" ? "/" : path}#faq`,
+    "@id": `${SITE_URL}${hrefFor(path)}#faq`,
     mainEntity: pageFaqs.map((f) => ({
       "@type": "Question",
       name: f.q,
@@ -227,10 +245,10 @@ function guideArticle(pathname: string): object | null {
 
   return {
     "@type": "MedicalWebPage",
-    "@id": `${SITE_URL}${pathname}#article`,
+    "@id": `${SITE_URL}${hrefFor(pathname)}#article`,
     headline: guide.title,
     description: guide.description,
-    url: `${SITE_URL}${pathname}`,
+    url: `${SITE_URL}${hrefFor(pathname)}`,
     dateModified: guide.lastmod,
     publisher: { "@id": `${SITE_URL}/#organization` },
     reviewedBy: {
@@ -305,6 +323,28 @@ export function renderHead(pathname: string): string {
   ]
     .filter(Boolean)
     .join("\n    ");
+}
+
+/**
+ * Head for dist/404.html — the GitHub Pages fallback, served with a real 404
+ * status for URLs that aren't prerendered routes.
+ *
+ * Deliberately not the homepage head: a 404 that carries the homepage's
+ * canonical tells Google every bad URL is a duplicate of "/", which is how a
+ * typo'd inbound link turns into an indexing complaint. noindex, no canonical.
+ * useDocumentMeta() replaces all of this the moment the route resolves.
+ */
+export function renderNotFoundHead(): string {
+  return [
+    `<title>Page Not Found — Blasto</title>`,
+    `<meta name="robots" content="noindex, nofollow" />`,
+    `<meta property="og:title" content="Page Not Found — Blasto" />`,
+    `<meta property="og:image" content="${attr(OG_IMAGE)}" />`,
+    `<meta property="og:image:width" content="1200" />`,
+    `<meta property="og:image:height" content="630" />`,
+    `<meta name="twitter:title" content="Page Not Found — Blasto" />`,
+    `<meta name="twitter:image" content="${attr(OG_IMAGE)}" />`,
+  ].join("\n    ");
 }
 
 /** sitemap.xml, generated at build time from the indexable routes. */

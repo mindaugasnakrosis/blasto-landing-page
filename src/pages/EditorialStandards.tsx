@@ -63,7 +63,7 @@ const EditorialStandards = () => (
           Blasto is a tracking and support tool, not a medical device. Our content is
           informational and never a substitute for your own care team, who know your
           history and your protocol. See our{" "}
-          <Link to="/terms" className="underline hover:text-foreground">Terms of Service</Link>.
+          <Link to="/terms/" className="underline hover:text-foreground">Terms of Service</Link>.
         </p>
       </section>
 
@@ -80,7 +80,7 @@ const EditorialStandards = () => (
     </div>
 
     <p className="mt-12 text-sm">
-      <Link to="/guides" className="text-muted-foreground hover:text-primary transition-colors">
+      <Link to="/guides/" className="text-muted-foreground hover:text-primary transition-colors">
         Browse the guides →
       </Link>
     </p>

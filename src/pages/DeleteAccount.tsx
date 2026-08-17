@@ -179,7 +179,7 @@ const DeleteAccount = () => (
             {SUPPORT_EMAIL}
           </a>
           . Our{" "}
-          <Link to="/privacy" className="underline hover:text-foreground">
+          <Link to="/privacy/" className="underline hover:text-foreground">
             Privacy Policy
           </Link>{" "}
           covers what we collect and your rights under GDPR, including access,

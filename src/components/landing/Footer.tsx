@@ -24,10 +24,10 @@ const Footer = () => {
           <div>
             <p className="mb-3 text-sm font-semibold text-foreground">Features</p>
             <ul className="space-y-2.5 text-sm text-muted-foreground">
-              <li><Link to="/ivf-medication-tracker" className="hover:text-primary transition-colors">Medication tracker</Link></li>
-              <li><Link to="/ivf-symptom-tracker" className="hover:text-primary transition-colors">Symptom tracker</Link></li>
-              <li><Link to="/ivf-results-tracker" className="hover:text-primary transition-colors">Results tracker</Link></li>
-              <li><Link to="/ivf-support-companion" className="hover:text-primary transition-colors">Support companion</Link></li>
+              <li><Link to="/ivf-medication-tracker/" className="hover:text-primary transition-colors">Medication tracker</Link></li>
+              <li><Link to="/ivf-symptom-tracker/" className="hover:text-primary transition-colors">Symptom tracker</Link></li>
+              <li><Link to="/ivf-results-tracker/" className="hover:text-primary transition-colors">Results tracker</Link></li>
+              <li><Link to="/ivf-support-companion/" className="hover:text-primary transition-colors">Support companion</Link></li>
               <li><a href="/#beta-access" className="hover:text-primary transition-colors">Request Beta Access</a></li>
             </ul>
           </div>
@@ -36,27 +36,27 @@ const Footer = () => {
             <p className="mb-3 text-sm font-semibold text-foreground">Company</p>
             <ul className="space-y-2.5 text-sm text-muted-foreground">
               <li>
-                <Link to="/guides" className="hover:text-primary transition-colors">IVF Guides</Link>
+                <Link to="/guides/" className="hover:text-primary transition-colors">IVF Guides</Link>
               </li>
               <li>
-                <Link to="/ivf-due-date-calculator" className="hover:text-primary transition-colors">Due Date Calculator</Link>
+                <Link to="/ivf-due-date-calculator/" className="hover:text-primary transition-colors">Due Date Calculator</Link>
               </li>
               {/* About is unlinked until its placeholder copy is filled in —
                   see the noindex note in src/lib/seo.ts. Restore this alongside
                   clearing that flag. */}
               <li>
-                <Link to="/editorial-standards" className="hover:text-primary transition-colors">Editorial Standards</Link>
+                <Link to="/editorial-standards/" className="hover:text-primary transition-colors">Editorial Standards</Link>
               </li>
               <li>
-                <Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
+                <Link to="/privacy/" className="hover:text-primary transition-colors">Privacy Policy</Link>
               </li>
               <li>
-                <Link to="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>
+                <Link to="/terms/" className="hover:text-primary transition-colors">Terms of Service</Link>
               </li>
               {/* Linked, not just routed: Play wants the deletion path
                   discoverable from the site, not only from the listing. */}
               <li>
-                <Link to="/delete-account" className="hover:text-primary transition-colors">Delete Account</Link>
+                <Link to="/delete-account/" className="hover:text-primary transition-colors">Delete Account</Link>
               </li>
               <li>
                 <a

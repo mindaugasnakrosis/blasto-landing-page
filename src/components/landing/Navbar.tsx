@@ -4,8 +4,8 @@ import blastoLogo from "@/assets/blasto-logo.webp";
 
 const links = [
   { href: "/#features", label: "Features" },
-  { href: "/guides", label: "Guides" },
-  { href: "/ivf-due-date-calculator", label: "Due date calculator" },
+  { href: "/guides/", label: "Guides" },
+  { href: "/ivf-due-date-calculator/", label: "Due date calculator" },
   { href: "/#faq", label: "FAQ" },
 ];
 

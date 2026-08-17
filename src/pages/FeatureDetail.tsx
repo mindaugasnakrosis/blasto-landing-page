@@ -5,6 +5,7 @@ import PageShell from "@/components/PageShell";
 import { PhoneFrame, ScreenCompanion } from "@/components/landing/PhoneMockups";
 import AppStoreBadge from "@/components/landing/AppStoreBadge";
 import { isAppLive } from "@/lib/site";
+import { hrefFor } from "@/lib/seo";
 import { featurePageBySlug, type FeaturePage, type ScreenKey } from "@/lib/featurePages";
 import screenHome from "@/assets/screenshots/screen-home.webp";
 import screenSymptoms from "@/assets/screenshots/screen-symptoms.webp";
@@ -85,14 +86,14 @@ const FeatureDetail = ({ page }: { page: FeaturePage }) => (
               if (!rel) return null;
               return (
                 <li key={slug}>
-                  <Link to={slug} className="text-muted-foreground hover:text-primary transition-colors">
+                  <Link to={hrefFor(slug)} className="text-muted-foreground hover:text-primary transition-colors">
                     {rel.eyebrow} — {rel.h1} {rel.h1Accent}
                   </Link>
                 </li>
               );
             })}
             <li>
-              <Link to="/guides" className="text-muted-foreground hover:text-primary transition-colors">
+              <Link to="/guides/" className="text-muted-foreground hover:text-primary transition-colors">
                 IVF guides
               </Link>
             </li>

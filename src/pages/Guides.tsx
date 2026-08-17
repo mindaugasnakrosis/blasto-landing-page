@@ -57,7 +57,7 @@ const Guides = () => {
                 {inCategory.map((guide) => (
                   <li key={guide.slug}>
                     <Link
-                      to={`/guides/${guide.slug}`}
+                      to={`/guides/${guide.slug}/`}
                       className="group flex items-start gap-3 rounded-xl border border-border/60 bg-card p-5 transition-colors hover:border-primary/40"
                     >
                       <FileText className="mt-0.5 h-4 w-4 shrink-0 text-blasto-rose-dark" />
@@ -85,7 +85,7 @@ const Guides = () => {
           fresh or frozen day 3, 5, and 6 transfers.
         </p>
         <Link
-          to="/ivf-due-date-calculator"
+          to="/ivf-due-date-calculator/"
           className="mt-3 inline-block text-sm font-semibold text-blasto-rose-dark hover:text-primary transition-colors"
         >
           Open the calculator →
@@ -96,17 +96,17 @@ const Guides = () => {
         <h2 className="font-semibold text-foreground">What Blasto does</h2>
         <ul className="mt-3 space-y-2">
           <li>
-            <Link to="/ivf-medication-tracker" className="text-muted-foreground hover:text-primary transition-colors">
+            <Link to="/ivf-medication-tracker/" className="text-muted-foreground hover:text-primary transition-colors">
               IVF medication tracker
             </Link>
           </li>
           <li>
-            <Link to="/ivf-symptom-tracker" className="text-muted-foreground hover:text-primary transition-colors">
+            <Link to="/ivf-symptom-tracker/" className="text-muted-foreground hover:text-primary transition-colors">
               IVF symptom tracker
             </Link>
           </li>
           <li>
-            <Link to="/ivf-results-tracker" className="text-muted-foreground hover:text-primary transition-colors">
+            <Link to="/ivf-results-tracker/" className="text-muted-foreground hover:text-primary transition-colors">
               IVF results tracker
             </Link>
           </li>

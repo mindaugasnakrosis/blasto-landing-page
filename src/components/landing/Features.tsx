@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Mic, Pill, HeartPulse, BarChart3, BookOpen, Check, ArrowRight } from "lucide-react";
 import { PhoneFrame, ScreenCompanion } from "./PhoneMockups";
 import { cn } from "@/lib/utils";
+import { hrefFor } from "@/lib/seo";
 import screenHome from "@/assets/screenshots/screen-home.webp";
 import screenSymptoms from "@/assets/screenshots/screen-symptoms.webp";
 import screenResults from "@/assets/screenshots/screen-results.webp";
@@ -171,7 +172,7 @@ const Features = () => {
                 </ul>
                 <div>
                   <Link
-                    to={feature.href}
+                    to={hrefFor(feature.href)}
                     className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-blasto-rose-dark hover:text-primary transition-colors"
                   >
                     {feature.linkLabel}

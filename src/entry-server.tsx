@@ -1,7 +1,12 @@
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
 import { AppShell } from "./App";
-import { renderHead, renderSitemap, prerenderRoutes } from "./lib/seo";
+import {
+  renderHead,
+  renderNotFoundHead,
+  renderSitemap,
+  prerenderRoutes,
+} from "./lib/seo";
 
 /**
  * Called by scripts/prerender.mjs at build time to emit static HTML per route.
@@ -18,6 +23,6 @@ export function render(url: string): { html: string; head: string } {
   return { html, head: renderHead(url) };
 }
 
-/** Re-exported for the prerender script: the routes to emit, and the sitemap
- *  generated from the indexable subset of them. */
-export { prerenderRoutes, renderSitemap };
+/** Re-exported for the prerender script: the routes to emit, the sitemap
+ *  generated from the indexable subset of them, and the 404 shell's head. */
+export { prerenderRoutes, renderSitemap, renderNotFoundHead };

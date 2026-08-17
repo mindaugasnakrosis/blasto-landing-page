@@ -31,7 +31,7 @@ describe("route metadata", () => {
     );
     expect(new Set(canonicals).size).toBe(canonicals.length);
     expect(canonicalFor(getRouteMeta("/privacy"))).toBe(
-      "https://blastoivf.com/privacy"
+      "https://blastoivf.com/privacy/"
     );
   });
 
@@ -55,7 +55,7 @@ describe("renderHead", () => {
     const html = renderHead("/privacy");
     expect(html.match(/<title>/g)).toHaveLength(1);
     expect(html.match(/rel="canonical"/g)).toHaveLength(1);
-    expect(html).toContain('href="https://blastoivf.com/privacy"');
+    expect(html).toContain('href="https://blastoivf.com/privacy/"');
   });
 
   it("puts app markup on the homepage only", () => {
@@ -192,7 +192,10 @@ describe("sitemap", () => {
     const locs = [...renderSitemap().matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]);
     expect(locs).toHaveLength(indexableRoutes.length);
     expect(new Set(locs).size).toBe(locs.length);
-    expect(locs).toContain("https://blastoivf.com/ivf-medication-tracker");
+    expect(locs).toContain("https://blastoivf.com/ivf-medication-tracker/");
+    // Every URL GitHub Pages actually serves 200 has a trailing slash; a bare
+    // path 301s, and a sitemap full of redirects is not an indexable sitemap.
+    for (const loc of locs) expect(loc.endsWith("/")).toBe(true);
   });
 
   it("gives every listed URL a prerendered route", () => {
@@ -216,12 +219,12 @@ describe("useDocumentMeta", () => {
     );
     expect(document.title).toBe(routeMeta["/privacy"].title);
     expect(head('link[rel="canonical"]', "href")).toBe(
-      "https://blastoivf.com/privacy"
+      "https://blastoivf.com/privacy/"
     );
     expect(head('meta[name="description"]')).toBe(
       routeMeta["/privacy"].description
     );
-    expect(head('meta[property="og:url"]')).toBe("https://blastoivf.com/privacy");
+    expect(head('meta[property="og:url"]')).toBe("https://blastoivf.com/privacy/");
   });
 
   it("overwrites prerendered tags rather than duplicating them", () => {
@@ -234,7 +237,7 @@ describe("useDocumentMeta", () => {
     expect(document.head.querySelectorAll('link[rel="canonical"]')).toHaveLength(1);
     expect(document.head.querySelectorAll("title")).toHaveLength(1);
     expect(head('link[rel="canonical"]', "href")).toBe(
-      "https://blastoivf.com/terms"
+      "https://blastoivf.com/terms/"
     );
   });
 });

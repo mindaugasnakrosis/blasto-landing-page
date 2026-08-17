@@ -122,7 +122,7 @@ const PrivacyPolicy = () => {
               <li><strong>Export:</strong> Profile → <strong>Export My Data</strong> in the app produces a machine-readable copy of everything we hold about you.</li>
               <li><strong>Delete:</strong> Profile → <strong>Delete Account</strong> permanently deletes your account and all associated data — profile, medications, symptoms, appointments, results, tasks, community posts and comments, voice-session records and analytics events — along with your sign-in record itself.</li>
             </ul>
-            <p className="mt-3">If you have uninstalled the app or cannot sign in, email <a href={mail} className="text-primary hover:underline">{SUPPORT_EMAIL}</a> from the account's email address and we will delete it for you. Full instructions, including exactly what is deleted and what is retained, are on the <Link to="/delete-account" className="text-primary hover:underline">account deletion page</Link>.</p>
+            <p className="mt-3">If you have uninstalled the app or cannot sign in, email <a href={mail} className="text-primary hover:underline">{SUPPORT_EMAIL}</a> from the account's email address and we will delete it for you. Full instructions, including exactly what is deleted and what is retained, are on the <Link to="/delete-account/" className="text-primary hover:underline">account deletion page</Link>.</p>
             <p className="mt-3">Deleting your account does not cancel a paid subscription — subscriptions are billed by the app store and must be cancelled there first.</p>
           </section>
 
