@@ -79,6 +79,7 @@ const PrivacyPolicy = () => {
               <li><strong>ElevenLabs:</strong> Powers the AI voice companion. Audio is processed to generate a reply and is not retained afterwards.</li>
               <li><strong>RevenueCat:</strong> Manages subscriptions. It receives your account identifier and your subscription status, and never receives your health or treatment data.</li>
               <li><strong>Sentry:</strong> Crash and error reporting, so we can fix problems. Reports carry no email address, no IP address, and none of your symptoms, medications or messages.</li>
+              <li><strong>PostHog:</strong> Product analytics, so we can see which parts of the app are used and where people get stuck. It receives your account identifier, the screens you open and actions such as "logged a medication" - never the medication, symptom, result or message itself. Hosted in the European Union.</li>
               <li><strong>Brevo:</strong> Delivers account emails such as address verification and password resets.</li>
               <li><strong>Apple and Google:</strong> Whichever app store you downloaded Blasto from processes subscription payments. The store handles the transaction and tells us only whether your subscription is active.</li>
             </ul>
