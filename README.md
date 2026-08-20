@@ -1,7 +1,7 @@
 # Blasto landing page
 
-Marketing and compliance site for [Blasto](https://blastoivf.com) — an iPhone app
-for tracking IVF cycles, medications, symptoms, and results.
+Marketing and compliance site for [Blasto](https://blastoivf.com) - an iPhone and
+Android app for tracking IVF cycles, medications, symptoms, and results.
 
 ## Stack
 
@@ -26,10 +26,13 @@ npm test           # vitest
 `dist/404.html` stays a plain SPA shell as the GitHub Pages fallback for
 unknown routes. The client hydrates prerendered pages (`src/main.tsx`).
 
-## Going live on the App Store
+## Going live on the stores
 
-Set `APP_STORE_URL` in `src/lib/site.ts`. The navbar, hero, and footer switch
-from "Request Beta Access" to a Download-on-the-App-Store badge automatically.
+Set `APP_STORE_URL` and/or `PLAY_STORE_URL` in `src/lib/site.ts`. The navbar,
+hero, footer and feature-page CTAs switch from "Request Beta Access" to the
+matching store badge(s) automatically, so one store can go live before the
+other. The Play URL will be
+`https://play.google.com/store/apps/details?id=com.blastoivf.blasto`.
 
 ## App screenshots
 

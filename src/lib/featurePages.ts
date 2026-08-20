@@ -36,7 +36,7 @@ export const featurePages: FeaturePage[] = [
     slug: "/ivf-medication-tracker",
     title: "IVF Medication Tracker — Never Miss a Dose | Blasto",
     description:
-      "Track every IVF injection, pill, and appointment in one daily checklist, with reminders timed the way you want them. Free during beta on iPhone.",
+      "Track every IVF injection, pill, and appointment in one daily checklist, with reminders timed the way you want them. Free during beta on iPhone and Android.",
     eyebrow: "Medications & appointments",
     h1: "An IVF medication tracker that gets every dose",
     h1Accent: "off your mind",
@@ -69,7 +69,7 @@ export const featurePages: FeaturePage[] = [
     slug: "/ivf-symptom-tracker",
     title: "IVF Symptom Tracker — Log How You Feel | Blasto",
     description:
-      "Log IVF symptoms and their intensity in seconds, spot patterns across your cycle, and give your care team a clearer picture. Free during beta on iPhone.",
+      "Log IVF symptoms and their intensity in seconds, spot patterns across your cycle, and give your care team a clearer picture. Free during beta on iPhone and Android.",
     eyebrow: "Symptom tracking",
     h1: "Log how you feel",
     h1Accent: "in seconds",
@@ -102,7 +102,7 @@ export const featurePages: FeaturePage[] = [
     slug: "/ivf-results-tracker",
     title: "IVF Results Tracker — Eggs, Embryos & Bloodwork | Blasto",
     description:
-      "See every retrieval as a clear funnel from eggs to euploid embryos, with bloodwork and ultrasounds alongside. Free during beta on iPhone.",
+      "See every retrieval as a clear funnel from eggs to euploid embryos, with bloodwork and ultrasounds alongside. Free during beta on iPhone and Android.",
     eyebrow: "Results",
     h1: "Your numbers,",
     h1Accent: "finally clear",

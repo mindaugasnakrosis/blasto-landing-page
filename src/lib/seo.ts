@@ -41,7 +41,7 @@ const staticRoutes: RouteMeta[] = [
   {
     title: "Blasto — The IVF App That Keeps Your Cycle Organized",
     description:
-      "Blasto is an iPhone IVF app for tracking medications, appointments, symptoms, and results — with a supportive AI companion. Private by design, free during beta.",
+      "Blasto is an IVF app for iPhone and Android for tracking medications, appointments, symptoms, and results — with a supportive AI companion. Private by design, free during beta.",
     path: "/",
     lastmod: SITE_UPDATED,
     priority: "1.0",
@@ -114,7 +114,7 @@ const staticRoutes: RouteMeta[] = [
   {
     title: "Terms of Service — Blasto IVF App",
     description:
-      "The terms governing your use of Blasto, the IVF tracking app for iPhone. Blasto is not a medical device and does not provide medical advice.",
+      "The terms governing your use of Blasto, the IVF tracking app for iPhone and Android. Blasto is not a medical device and does not provide medical advice.",
     path: "/terms",
     lastmod: SITE_UPDATED,
     priority: "0.3",
@@ -206,7 +206,7 @@ const application = {
   "@type": "MobileApplication",
   "@id": `${SITE_URL}/#app`,
   name: "Blasto",
-  operatingSystem: "iOS",
+  operatingSystem: "iOS, Android",
   applicationCategory: "HealthApplication",
   description:
     "Blasto helps you track IVF cycles, medications, appointments, symptoms, and results — with a supportive AI voice companion.",

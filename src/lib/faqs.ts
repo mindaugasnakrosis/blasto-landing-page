@@ -16,7 +16,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "How do I cancel?",
-    a: "There's nothing to cancel during the free beta — you can simply delete your account at any time. If paid plans are introduced later, subscriptions will be managed through your Apple App Store account, where you can cancel anytime with a couple of taps.",
+    a: "There's nothing to cancel during the free beta — you can simply delete your account at any time. If paid plans are introduced later, subscriptions will be managed through the App Store or Google Play, whichever you downloaded Blasto from, where you can cancel anytime with a couple of taps.",
   },
   {
     q: "Is Blasto medical advice?",
@@ -32,6 +32,6 @@ export const faqs: Faq[] = [
   },
   {
     q: "What devices does Blasto work on?",
-    a: `Blasto is an iPhone app. During the beta, access is by invitation — request access on this page and we'll send you an invite. Questions? Email us at ${SUPPORT_EMAIL}.`,
+    a: `Blasto runs on iPhone and Android phones. During the beta, access is by invitation — request access on this page and we'll send you an invite. Questions? Email us at ${SUPPORT_EMAIL}.`,
   },
 ];

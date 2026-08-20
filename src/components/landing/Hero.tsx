@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Sparkles, ShieldCheck } from "lucide-react";
 import { PhoneFrame } from "./PhoneMockups";
-import AppStoreBadge from "./AppStoreBadge";
-import { isAppLive } from "@/lib/site";
+import StoreBadges from "./StoreBadges";
+import { isAppLive, LIVE_STORES_LABEL } from "@/lib/site";
 import screenHero from "@/assets/screenshots/screen-hero.webp";
 
 const Hero = () => {
@@ -30,7 +30,7 @@ const Hero = () => {
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
               </span>
               <span className="text-sm font-medium text-foreground/80">
-                {isAppLive ? "Now on the App Store" : "Limited Beta — Spots filling up"}
+                {isAppLive ? `Now on ${LIVE_STORES_LABEL}` : "Limited Beta — Spots filling up"}
               </span>
             </div>
           </motion.div>
@@ -52,7 +52,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             Nurturing every step of your fertility journey — medications, appointments,
-            symptoms, and results in one calm iPhone app, with a supportive voice
+            symptoms, and results in one calm app for iPhone and Android, with a supportive voice
             companion by your side the whole way.
           </motion.p>
 
@@ -63,7 +63,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.45 }}
           >
             {isAppLive ? (
-              <AppStoreBadge />
+              <StoreBadges id="get-the-app" />
             ) : (
               <Button
                 asChild

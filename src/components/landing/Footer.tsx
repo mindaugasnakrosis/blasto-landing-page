@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Mail } from "lucide-react";
 import blastoLogo from "@/assets/blasto-logo.webp";
-import AppStoreBadge from "./AppStoreBadge";
+import StoreBadges from "./StoreBadges";
 import { SUPPORT_EMAIL } from "@/lib/site";
 
 const Footer = () => {
@@ -15,10 +15,10 @@ const Footer = () => {
               <span className="text-xl font-bold">Blasto</span>
             </div>
             <p className="mt-3 max-w-xs text-sm text-muted-foreground leading-relaxed">
-              Nurturing every step of your fertility journey. An iPhone app for tracking
+              Nurturing every step of your fertility journey. An app for iPhone and Android, for tracking
               IVF cycles, medications, symptoms, and results.
             </p>
-            <AppStoreBadge className="mt-5" />
+            <StoreBadges className="mt-5 !justify-start" />
           </div>
 
           <div>

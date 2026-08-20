@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Check, Sparkles } from "lucide-react";
 import PageShell from "@/components/PageShell";
 import { PhoneFrame, ScreenCompanion } from "@/components/landing/PhoneMockups";
-import AppStoreBadge from "@/components/landing/AppStoreBadge";
+import StoreBadges from "@/components/landing/StoreBadges";
 import { isAppLive } from "@/lib/site";
 import { hrefFor } from "@/lib/seo";
 import { featurePageBySlug, type FeaturePage, type ScreenKey } from "@/lib/featurePages";
@@ -66,7 +66,7 @@ const FeatureDetail = ({ page }: { page: FeaturePage }) => (
           </p>
           <div className="mt-5">
             {isAppLive ? (
-              <AppStoreBadge />
+              <StoreBadges className="!justify-start" />
             ) : (
               <Button asChild size="lg" className="rounded-full px-7 font-semibold">
                 <a href="/#beta-access">

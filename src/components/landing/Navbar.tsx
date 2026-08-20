@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { isAppLive, APP_STORE_URL } from "@/lib/site";
+import { isAppLive, DOWNLOAD_HREF } from "@/lib/site";
 import blastoLogo from "@/assets/blasto-logo.webp";
 
 const links = [
@@ -27,7 +27,7 @@ const Navbar = () => {
         </div>
 
         <Button asChild size="sm" className="rounded-full px-5 font-semibold">
-          <a href={isAppLive ? APP_STORE_URL : "/#beta-access"}>
+          <a href={isAppLive ? DOWNLOAD_HREF : "/#beta-access"}>
             {isAppLive ? "Download" : "Join the beta"}
           </a>
         </Button>

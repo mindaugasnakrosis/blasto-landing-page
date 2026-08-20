@@ -9,7 +9,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import AppStoreBadge from "@/components/landing/AppStoreBadge";
+import StoreBadges from "@/components/landing/StoreBadges";
 import { isAppLive } from "@/lib/site";
 import { calculatorFaqs } from "@/lib/calculatorFaqs";
 import { cn } from "@/lib/utils";
@@ -322,7 +322,7 @@ const DueDateCalculator = () => {
         </p>
         <div className="mt-5">
           {isAppLive ? (
-            <AppStoreBadge />
+            <StoreBadges className="!justify-start" />
           ) : (
             <Button asChild size="lg" className="rounded-full px-7 font-semibold">
               <a href="/#beta-access">
