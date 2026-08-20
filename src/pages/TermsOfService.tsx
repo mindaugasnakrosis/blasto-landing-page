@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import blastoLogo from "@/assets/blasto-logo.webp";
+import { SUPPORT_EMAIL } from "@/lib/site";
 
 const TermsOfService = () => {
   return (
@@ -94,7 +95,7 @@ const TermsOfService = () => {
             <p>If you have any questions about these Terms of Service, please contact us:</p>
             <ul className="list-none pl-0 mt-3 space-y-1">
               <li><strong>Blasto</strong></li>
-              <li>Email: <a href="mailto:support@blastoivf.com" className="text-primary hover:underline">support@blastoivf.com</a></li>
+              <li>Email: <a href={`mailto:${SUPPORT_EMAIL}`} className="text-primary hover:underline">{SUPPORT_EMAIL}</a></li>
             </ul>
           </section>
         </div>

@@ -4,6 +4,7 @@ import { CheckCircle2, AlertCircle, Loader2, Lock } from "lucide-react";
 import PageShell from "@/components/PageShell";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { SUPPORT_EMAIL } from "@/lib/site";
 
 /**
  * Branded Firebase email-action handler. Verification emails from the app
@@ -28,7 +29,7 @@ const FRIENDLY_ERRORS: Record<string, string> = {
   EXPIRED_OOB_CODE: "This link has expired. Request a new one from the app and try again.",
   INVALID_OOB_CODE:
     "This link is invalid or has already been used. If you already verified, just head back to the app.",
-  USER_DISABLED: "This account has been disabled. Contact support@blastoivf.com.",
+  USER_DISABLED: `This account has been disabled. Contact ${SUPPORT_EMAIL}.`,
   EMAIL_NOT_FOUND: "We couldn't find an account for this link. It may have been deleted.",
 };
 
