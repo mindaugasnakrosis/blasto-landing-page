@@ -148,9 +148,25 @@ cluster is a manipulation footprint. One or two product links per article.
 - **`/guides` is indexable with zero published articles.** Kept indexed so the
   hub gets crawled early; it's thin until a guide lands. Flip to `noindex` in
   `src/lib/seo.ts` if that becomes a concern.
-- **Google Fonts is render-blocking.** Flagged but not fixed. Self-hosting Inter
-  would remove a third-party round trip and a GDPR consideration for EU users.
-  Moderate win, not urgent now that images are handled.
+- **Google Fonts was render-blocking.** Fixed 24 Aug 2026: Inter is self-hosted
+  from `public/fonts` and preloaded, so there is no third-party round trip and
+  no GDPR consideration for EU users. Mobile Lighthouse went 87 -> 96 with the
+  rest of that pass (see "Performance, still open" below).
 - **Nothing here competes for "ivf app" directly.** That term is contested by App
   Store listings and established products. These pages target queries where page
   one is currently personal blogs. That traffic converts better anyway.
+
+## Performance, still open
+
+- **The primary CTA fails WCAG AA.** White on `--primary` (#F06680) is 3.03:1,
+  under the 4.5:1 floor, so accessibility sits at 96 instead of 100. Fixing it
+  means darkening the rose the app brand is built on, or reserving a darker
+  shade for buttons and keeping `--blasto-rose` for decoration. A design call,
+  not a code one, so it is deliberately left alone.
+- **Every route ships in the homepage bundle.** ~71 kB of the JS a visitor
+  downloads is other pages (privacy, terms, the calculator, the guides). Route
+  splitting has to dynamically import the current route *before* `hydrateRoot`,
+  or the prerendered HTML flashes its Suspense fallback.
+- **GitHub Pages caps `Cache-Control` at `max-age=600`.** Lighthouse wants a
+  year on the hashed assets and there is no way to set headers on Pages. Only a
+  CDN in front (Cloudflare) would move that audit.

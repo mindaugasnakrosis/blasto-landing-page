@@ -1,10 +1,8 @@
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Sparkles, ShieldCheck } from "lucide-react";
-import { PhoneFrame } from "./PhoneMockups";
+import { PhoneFrame, PhoneScreen } from "./PhoneMockups";
 import StoreBadges from "./StoreBadges";
 import { isAppLive, LIVE_STORES_LABEL } from "@/lib/site";
-import screenHero from "@/assets/screenshots/screen-hero.webp";
 
 const Hero = () => {
   return (
@@ -18,12 +16,7 @@ const Hero = () => {
 
       <div className="container relative z-10 grid items-center gap-12 px-4 py-16 sm:py-24 lg:grid-cols-2 lg:gap-8">
         <div className="text-center lg:text-left">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex justify-center lg:justify-start"
-          >
+          <div className="hero-rise flex justify-center lg:justify-start">
             <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 mb-8">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
@@ -33,34 +26,28 @@ const Hero = () => {
                 {isAppLive ? `Now on ${LIVE_STORES_LABEL}` : "Limited Beta — Spots filling up"}
               </span>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.15 }}
+          <h1
+            className="hero-rise text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight"
+            style={{ animationDelay: "0.1s" }}
           >
             The IVF app that keeps your{" "}
             <span className="text-gradient">cycle organized</span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            className="mt-6 text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-xl mx-auto lg:mx-0"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+          <p
+            className="hero-rise mt-6 text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-xl mx-auto lg:mx-0"
+            style={{ animationDelay: "0.2s" }}
           >
             Nurturing every step of your fertility journey — medications, appointments,
             symptoms, and results in one calm app for iPhone and Android, with a supportive voice
             companion by your side the whole way.
-          </motion.p>
+          </p>
 
-          <motion.div
-            className="mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.45 }}
+          <div
+            className="hero-rise mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+            style={{ animationDelay: "0.3s" }}
           >
             {isAppLive ? (
               <StoreBadges id="get-the-app" />
@@ -84,41 +71,28 @@ const Hero = () => {
             >
               <a href="#features">See what's inside</a>
             </Button>
-          </motion.div>
+          </div>
 
-          <motion.p
-            className="mt-8 flex items-center justify-center lg:justify-start gap-2 text-sm text-muted-foreground"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+          <p
+            className="hero-rise mt-8 flex items-center justify-center lg:justify-start gap-2 text-sm text-muted-foreground"
+            style={{ animationDelay: "0.4s" }}
           >
             <ShieldCheck className="h-4 w-4 text-blasto-rose-dark" />
             Private by design — your data is never sold. Free during beta.
-          </motion.p>
+          </p>
         </div>
 
-        <motion.div
-          className="flex justify-center lg:justify-end"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.3 }}
-        >
+        <div className="hero-rise flex justify-center lg:justify-end" style={{ animationDelay: "0.2s" }}>
           <PhoneFrame className="rotate-2 hover:rotate-0 transition-transform duration-500">
-            {/* The LCP element. Eager + high priority; the prerendered HTML
+            {/* Above the fold. Eager + high priority; the prerendered HTML
                 means the preload scanner finds it before React boots. */}
-            <img
-              src={screenHero}
+            <PhoneScreen
+              name="hero"
               alt="Blasto home screen showing an egg retrieval countdown and today's medication tasks"
-              width={750}
-              height={1626}
-              loading="eager"
-              decoding="async"
-              // React 18 drops the camelCase `fetchPriority` prop silently
-              // (it landed in React 19), so pass the DOM attribute directly.
-              {...{ fetchpriority: "high" }}
+              priority
             />
           </PhoneFrame>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

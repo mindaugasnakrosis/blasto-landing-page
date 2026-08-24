@@ -2,13 +2,9 @@ import { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Mic, Pill, HeartPulse, BarChart3, BookOpen, Check, ArrowRight } from "lucide-react";
-import { PhoneFrame, ScreenCompanion } from "./PhoneMockups";
+import { PhoneFrame, PhoneScreen, ScreenCompanion } from "./PhoneMockups";
 import { cn } from "@/lib/utils";
 import { hrefFor } from "@/lib/seo";
-import screenHome from "@/assets/screenshots/screen-home.webp";
-import screenSymptoms from "@/assets/screenshots/screen-symptoms.webp";
-import screenResults from "@/assets/screenshots/screen-results.webp";
-import screenLearn from "@/assets/screenshots/screen-learn.webp";
 
 type Feature = {
   icon: typeof Mic;
@@ -58,7 +54,7 @@ const features: Feature[] = [
       "Reminders for every medication and appointment",
       "Your clinic, protocol, and treatment phase in one place",
     ],
-    screen: <img src={screenHome} alt="Blasto home screen with today's medication tasks and reminders" width={750} height={1626} loading="lazy" decoding="async" />,
+    screen: <PhoneScreen name="home" alt="Blasto home screen with today's medication tasks and reminders" />,
     href: "/ivf-medication-tracker",
     linkLabel: "More about medication tracking",
   },
@@ -77,7 +73,7 @@ const features: Feature[] = [
       "A running log across your whole cycle",
       "Gentle reassurance, backed by real prevalence data",
     ],
-    screen: <img src={screenSymptoms} alt="Blasto symptom tracking screen with intensity slider" width={750} height={1626} loading="lazy" decoding="async" />,
+    screen: <PhoneScreen name="symptoms" alt="Blasto symptom tracking screen with intensity slider" />,
     href: "/ivf-symptom-tracker",
     linkLabel: "More about symptom tracking",
   },
@@ -96,7 +92,7 @@ const features: Feature[] = [
       "Blood work and ultrasounds alongside",
       "Every cycle kept for easy reference",
     ],
-    screen: <img src={screenResults} alt="Blasto results screen showing an egg retrieval funnel chart" width={750} height={1626} loading="lazy" decoding="async" />,
+    screen: <PhoneScreen name="results" alt="Blasto results screen showing an egg retrieval funnel chart" />,
     href: "/ivf-results-tracker",
     linkLabel: "More about results tracking",
   },
@@ -115,7 +111,7 @@ const features: Feature[] = [
       "5-minute reads, not medical journals",
       "Covers the emotional journey too",
     ],
-    screen: <img src={screenLearn} alt="Blasto learn screen with articles matched to your treatment phase" width={750} height={1626} loading="lazy" decoding="async" />,
+    screen: <PhoneScreen name="learn" alt="Blasto learn screen with articles matched to your treatment phase" />,
     href: "/guides",
     linkLabel: "Read the IVF guides",
   },

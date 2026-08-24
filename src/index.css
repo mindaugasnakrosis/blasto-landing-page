@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Self-hosted Inter. One variable woff2 covers every weight the site uses
+   (400-700), so this is a single request from our own origin instead of a
+   render-blocking Google Fonts stylesheet plus a font from a second origin.
+   The file is preloaded in index.html; keep the two in sync if it is renamed.
+   Latin subset only - the site ships no non-latin copy. */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/inter-latin-var.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 @layer base {
   :root {
     --background: 30 33% 98%;
@@ -21,7 +37,9 @@
     --secondary-foreground: 160 20% 15%;
 
     --muted: 30 20% 95%;
-    --muted-foreground: 160 10% 45%;
+    /* 40%, not 45%: at 45% this lands at 4.16:1 on --background, under the
+       4.5:1 AA floor for the body and footer copy that uses it. */
+    --muted-foreground: 160 10% 40%;
 
     --accent: 349 70% 88%;
     --accent-foreground: 160 20% 15%;
@@ -116,6 +134,22 @@
 }
 
 @layer utilities {
+  /* Above-the-fold entrance, deliberately CSS rather than framer-motion. The
+     page is prerendered, and framer-motion's `initial={{ opacity: 0 }}` bakes
+     an inline opacity:0 into the served HTML - so the hero stayed invisible
+     until the JS bundle had downloaded and hydrated, pushing its paint about
+     2.2s past the first paint. Keyframes start at first paint instead, and the
+     hero stays readable even if the bundle never arrives. */
+  .hero-rise {
+    @apply animate-rise-in;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-rise {
+      animation: none;
+    }
+  }
+
   .text-gradient {
     @apply bg-clip-text text-transparent;
     background-image: linear-gradient(135deg, hsl(var(--blasto-rose-dark)), hsl(var(--blasto-berry)));

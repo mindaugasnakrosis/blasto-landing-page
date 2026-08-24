@@ -1,6 +1,16 @@
 import { ReactNode } from "react";
 import { Mic } from "lucide-react";
 import { cn } from "@/lib/utils";
+import screenHero from "@/assets/screenshots/screen-hero.webp";
+import screenHero500 from "@/assets/screenshots/screen-hero-500.webp";
+import screenHome from "@/assets/screenshots/screen-home.webp";
+import screenHome500 from "@/assets/screenshots/screen-home-500.webp";
+import screenSymptoms from "@/assets/screenshots/screen-symptoms.webp";
+import screenSymptoms500 from "@/assets/screenshots/screen-symptoms-500.webp";
+import screenResults from "@/assets/screenshots/screen-results.webp";
+import screenResults500 from "@/assets/screenshots/screen-results-500.webp";
+import screenLearn from "@/assets/screenshots/screen-learn.webp";
+import screenLearn500 from "@/assets/screenshots/screen-learn-500.webp";
 
 /** iPhone-style frame. Wrap a real screenshot:
  *  <PhoneFrame><img src={screenshot} alt="…" /></PhoneFrame> */
@@ -16,6 +26,49 @@ export const PhoneFrame = ({ children, className }: { children: ReactNode; class
     </div>
   </div>
 );
+
+/** The app screenshots, each in the 750w original and a 500w downscale.
+ *  Keys are shared with ScreenKey in @/lib/featurePages. */
+const SCREENS = {
+  hero: { full: screenHero, half: screenHero500 },
+  home: { full: screenHome, half: screenHome500 },
+  symptoms: { full: screenSymptoms, half: screenSymptoms500 },
+  results: { full: screenResults, half: screenResults500 },
+  learn: { full: screenLearn, half: screenLearn500 },
+} as const;
+
+export type PhoneScreenName = keyof typeof SCREENS;
+
+/** A screenshot sized for <PhoneFrame>. The frame is never wider than 270px
+ *  and pads 10px a side, so the image paints into at most 250 CSS px: the
+ *  750w original is only worth its bytes on a 3x display, and everything
+ *  else takes the 500w one. Pass `priority` for an above-the-fold screen. */
+export const PhoneScreen = ({
+  name,
+  alt,
+  priority = false,
+}: {
+  name: PhoneScreenName;
+  alt: string;
+  priority?: boolean;
+}) => {
+  const { full, half } = SCREENS[name];
+  return (
+    <img
+      src={full}
+      srcSet={`${half} 500w, ${full} 750w`}
+      sizes="250px"
+      alt={alt}
+      width={750}
+      height={1626}
+      loading={priority ? "eager" : "lazy"}
+      decoding="async"
+      // React 18 drops the camelCase `fetchPriority` prop silently
+      // (it landed in React 19), so pass the DOM attribute directly.
+      {...(priority ? { fetchpriority: "high" } : {})}
+    />
+  );
+};
 
 /** Stylized illustration of the AI voice companion (no dedicated app screen
  *  exists yet — replace with a real screenshot when one is available). */
