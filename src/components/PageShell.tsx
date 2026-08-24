@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { motion } from "framer-motion";
 import Navbar from "./landing/Navbar";
 import Footer from "./landing/Footer";
 import { cn } from "@/lib/utils";
@@ -19,18 +18,18 @@ type Props = {
 const PageShell = ({ children, width = "prose", className }: Props) => (
   <>
     <Navbar />
-    <motion.main
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+    {/* CSS keyframes, not framer-motion: these pages are prerendered, and a
+        JS-driven `initial={{ opacity: 0 }}` served their copy invisible until
+        the animation library had loaded. See .animate-rise-in in index.css. */}
+    <main
       className={cn(
-        "container px-4 pt-28 pb-20",
+        "animate-rise-in container px-4 pt-28 pb-20",
         width === "prose" ? "max-w-3xl" : "max-w-5xl",
         className
       )}
     >
       {children}
-    </motion.main>
+    </main>
     <Footer />
   </>
 );

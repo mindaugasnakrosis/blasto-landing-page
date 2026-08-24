@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import blastoLogo from "@/assets/blasto-logo.webp";
@@ -30,12 +29,7 @@ const PrivacyPolicy = () => {
         </div>
       </header>
 
-      <motion.main
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="container px-4 py-12 max-w-3xl mx-auto"
-      >
+      <main className="animate-rise-in container px-4 py-12 max-w-3xl mx-auto">
         <h1 className="text-3xl md:text-4xl font-bold mb-2">Privacy Policy</h1>
         <p className="text-muted-foreground mb-10">Last updated: August 16, 2026</p>
 
@@ -172,7 +166,7 @@ const PrivacyPolicy = () => {
             </ul>
           </section>
         </div>
-      </motion.main>
+      </main>
     </div>
   );
 };

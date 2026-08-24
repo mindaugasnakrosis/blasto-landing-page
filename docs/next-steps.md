@@ -163,10 +163,24 @@ cluster is a manipulation footprint. One or two product links per article.
   means darkening the rose the app brand is built on, or reserving a darker
   shade for buttons and keeping `--blasto-rose` for decoration. A design call,
   not a code one, so it is deliberately left alone.
-- **Every route ships in the homepage bundle.** ~71 kB of the JS a visitor
-  downloads is other pages (privacy, terms, the calculator, the guides). Route
-  splitting has to dynamically import the current route *before* `hydrateRoot`,
-  or the prerendered HTML flashes its Suspense fallback.
+- **Routes are code-split** as of 24 Aug 2026. `src/lib/routeChunk.tsx` renders
+  an already-fetched chunk synchronously, and both entry points load the
+  current route's chunk before rendering (`preloadRoute` in main.tsx,
+  `preloadAllRoutes` in the prerenderer) - plain React.lazy would suspend on
+  hydration and flash the prerendered HTML away. The prerenderer reads Vite's
+  build manifest to emit a `<link rel="modulepreload">` per route, and throws
+  if a page id stops resolving. Content pages went from 153 kB of JS to 86 kB;
+  the homepage barely moves, because it genuinely needs its own code.
+- **The homepage scores 95 rather than 96 since the split.** Its route chunk is
+  a second high-priority request next to the entry bundle, and Lighthouse's
+  simulated-throttling model gives the render-blocking CSS a smaller share of
+  bandwidth as a result. *Observed* FCP is unchanged (176 ms vs 177 ms) - the
+  cost is in the model, not the page. Dropping the modulepreload trades it back
+  for a worse LCP (3.0 s), so it stays.
+- **The Tailwind CSS bundle is the last render-blocking resource.** 12.8 kB
+  gzipped, and Lighthouse attributes 150-300 ms of FCP to it on mobile. Every
+  page loads every page's utilities. Splitting or inlining the critical subset
+  is the next real lever on first paint.
 - **GitHub Pages caps `Cache-Control` at `max-age=600`.** Lighthouse wants a
   year on the hashed assets and there is no way to set headers on Pages. Only a
   CDN in front (Cloudflare) would move that audit.

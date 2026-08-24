@@ -16,7 +16,7 @@ const Hero = () => {
 
       <div className="container relative z-10 grid items-center gap-12 px-4 py-16 sm:py-24 lg:grid-cols-2 lg:gap-8">
         <div className="text-center lg:text-left">
-          <div className="hero-rise flex justify-center lg:justify-start">
+          <div className="animate-rise-in flex justify-center lg:justify-start">
             <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 mb-8">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
@@ -29,7 +29,7 @@ const Hero = () => {
           </div>
 
           <h1
-            className="hero-rise text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight"
+            className="animate-rise-in text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight"
             style={{ animationDelay: "0.1s" }}
           >
             The IVF app that keeps your{" "}
@@ -37,7 +37,7 @@ const Hero = () => {
           </h1>
 
           <p
-            className="hero-rise mt-6 text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-xl mx-auto lg:mx-0"
+            className="animate-rise-in mt-6 text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-xl mx-auto lg:mx-0"
             style={{ animationDelay: "0.2s" }}
           >
             Nurturing every step of your fertility journey — medications, appointments,
@@ -46,7 +46,7 @@ const Hero = () => {
           </p>
 
           <div
-            className="hero-rise mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+            className="animate-rise-in mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
             style={{ animationDelay: "0.3s" }}
           >
             {isAppLive ? (
@@ -74,7 +74,7 @@ const Hero = () => {
           </div>
 
           <p
-            className="hero-rise mt-8 flex items-center justify-center lg:justify-start gap-2 text-sm text-muted-foreground"
+            className="animate-rise-in mt-8 flex items-center justify-center lg:justify-start gap-2 text-sm text-muted-foreground"
             style={{ animationDelay: "0.4s" }}
           >
             <ShieldCheck className="h-4 w-4 text-blasto-rose-dark" />
@@ -82,7 +82,7 @@ const Hero = () => {
           </p>
         </div>
 
-        <div className="hero-rise flex justify-center lg:justify-end" style={{ animationDelay: "0.2s" }}>
+        <div className="animate-rise-in flex justify-center lg:justify-end" style={{ animationDelay: "0.2s" }}>
           <PhoneFrame className="rotate-2 hover:rotate-0 transition-transform duration-500">
             {/* Above the fold. Eager + high priority; the prerendered HTML
                 means the preload scanner finds it before React boots. */}

@@ -134,18 +134,15 @@
 }
 
 @layer utilities {
-  /* Above-the-fold entrance, deliberately CSS rather than framer-motion. The
-     page is prerendered, and framer-motion's `initial={{ opacity: 0 }}` bakes
-     an inline opacity:0 into the served HTML - so the hero stayed invisible
-     until the JS bundle had downloaded and hydrated, pushing its paint about
-     2.2s past the first paint. Keyframes start at first paint instead, and the
-     hero stays readable even if the bundle never arrives. */
-  .hero-rise {
-    @apply animate-rise-in;
-  }
-
+  /* Page entrance, deliberately CSS rather than framer-motion. Pages are
+     prerendered, and framer-motion's `initial={{ opacity: 0 }}` bakes an
+     inline opacity:0 into the served HTML - so the content stayed invisible
+     until the JS had downloaded and hydrated, about 2.2s past the first paint
+     on mobile. Keyframes start at first paint instead, the markup is readable
+     even if the bundle never arrives, and content pages no longer pull in an
+     animation library just to fade a <main> in. */
   @media (prefers-reduced-motion: reduce) {
-    .hero-rise {
+    .animate-rise-in {
       animation: none;
     }
   }

@@ -12,6 +12,11 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
   },
+  build: {
+    // scripts/prerender.mjs reads this to turn each route's page module into a
+    // <link rel="modulepreload">; it deletes the file again once it is done.
+    manifest: true,
+  },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
     alias: {
