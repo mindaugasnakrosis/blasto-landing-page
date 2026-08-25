@@ -6,6 +6,7 @@ const links = [
   { href: "/#features", label: "Features" },
   { href: "/guides/", label: "Guides" },
   { href: "/ivf-due-date-calculator/", label: "Due date calculator" },
+  { href: "/hcg-doubling-calculator/", label: "hCG calculator" },
   { href: "/#faq", label: "FAQ" },
 ];
 
@@ -18,7 +19,11 @@ const Navbar = () => {
           <span className="text-lg font-bold tracking-tight">Blasto</span>
         </a>
 
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
+        {/* gap-6 until lg: with five links, gap-8 left only 13px between the
+              logo and "Features" at the md breakpoint, so the three groups ran
+              together. At gap-6 the outer spacing (29px) is wider than the gaps
+              within the list, which is the way round it should be. */}
+          <div className="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium text-muted-foreground">
           {links.map((link) => (
             <a key={link.href} href={link.href} className="hover:text-foreground transition-colors">
               {link.label}

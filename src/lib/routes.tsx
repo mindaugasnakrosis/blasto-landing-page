@@ -15,6 +15,7 @@ const FeatureDetail = routeChunk("src/pages/FeatureDetail.tsx", () => import("@/
 const Guides = routeChunk("src/pages/Guides.tsx", () => import("@/pages/Guides"));
 const GuideDetail = routeChunk("src/pages/GuideDetail.tsx", () => import("@/pages/GuideDetail"));
 const DueDateCalculator = routeChunk("src/pages/DueDateCalculator.tsx", () => import("@/pages/DueDateCalculator"));
+const HcgCalculator = routeChunk("src/pages/HcgCalculator.tsx", () => import("@/pages/HcgCalculator"));
 const About = routeChunk("src/pages/About.tsx", () => import("@/pages/About"));
 const EditorialStandards = routeChunk("src/pages/EditorialStandards.tsx", () => import("@/pages/EditorialStandards"));
 const VerifyEmail = routeChunk("src/pages/VerifyEmail.tsx", () => import("@/pages/VerifyEmail"));
@@ -44,6 +45,12 @@ export const routes: AppRoute[] = [
     element: <DueDateCalculator />,
     preload: DueDateCalculator.preload,
     module: DueDateCalculator.module,
+  },
+  {
+    path: "/hcg-doubling-calculator",
+    element: <HcgCalculator />,
+    preload: HcgCalculator.preload,
+    module: HcgCalculator.module,
   },
   { path: "/guides", element: <Guides />, preload: Guides.preload, module: Guides.module },
   ...guides.map((guide) => ({

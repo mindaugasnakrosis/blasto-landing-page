@@ -4,6 +4,10 @@ import blastoLogo from "@/assets/blasto-logo.webp";
 import StoreBadges from "./StoreBadges";
 import { SUPPORT_EMAIL } from "@/lib/site";
 
+/** Split so the address can break at the "@" rather than mid-domain - see the
+ *  note on the link below. */
+const [EMAIL_LOCAL, EMAIL_DOMAIN] = SUPPORT_EMAIL.split("@");
+
 const Footer = () => {
   return (
     <footer className="border-t border-border/50 bg-blasto-cream py-14">
@@ -41,6 +45,9 @@ const Footer = () => {
               <li>
                 <Link to="/ivf-due-date-calculator/" className="hover:text-primary transition-colors">Due Date Calculator</Link>
               </li>
+              <li>
+                <Link to="/hcg-doubling-calculator/" className="hover:text-primary transition-colors">hCG Doubling Calculator</Link>
+              </li>
               {/* About is unlinked until its placeholder copy is filled in —
                   see the noindex note in src/lib/seo.ts. Restore this alongside
                   clearing that flag. */}
@@ -59,12 +66,24 @@ const Footer = () => {
                 <Link to="/delete-account/" className="hover:text-primary transition-colors">Delete Account</Link>
               </li>
               <li>
+                {/* At the md breakpoint this column is about 154px wide, and
+                    an email address is one unbreakable token - so as an
+                    inline-flex shrink-to-fit link it grew wider than the
+                    viewport and put a horizontal scrollbar on every page of the
+                    site. The <wbr> is what actually fixes it: overflow-wrap
+                    breaks the rendered line but does not lower the element's
+                    min-content width, so a flex item still refuses to shrink,
+                    whereas a real break opportunity does both - and it puts the
+                    break after the "@" instead of mid-domain. */}
                 <a
                   href={`mailto:${SUPPORT_EMAIL}`}
-                  className="inline-flex items-center gap-1.5 hover:text-primary transition-colors"
+                  className="flex items-start gap-1.5 hover:text-primary transition-colors"
                 >
-                  <Mail className="h-3.5 w-3.5" />
-                  {SUPPORT_EMAIL}
+                  <Mail className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+                  <span className="min-w-0">
+                    {EMAIL_LOCAL}@<wbr />
+                    {EMAIL_DOMAIN}
+                  </span>
                 </a>
               </li>
             </ul>

@@ -1,6 +1,6 @@
 # Next steps
 
-Everything below is blocked on a human, not on code. As of 13 Aug 2026 the site
+Everything below is blocked on a human, not on code. As of 25 Aug 2026 the site
 is deployed and verified; nothing is half-finished in the repo.
 
 Tick items off as you go. Related reading: `docs/content-plan.md` (keyword
@@ -103,6 +103,39 @@ whether article #2 is worth writing.
 
 ---
 
+## Free tools (shipped)
+
+The tools are the only pages on this site that can rank without the medical
+reviewer, which is why they exist while the guides are stuck. Both are live and
+linked from the navbar, the footer, the `/guides` hub, and each other.
+
+| Page | Target |
+|---|---|
+| `/ivf-due-date-calculator` | "ivf due date calculator" - outdrew every article target measured |
+| `/hcg-doubling-calculator` | "hcg doubling time calculator", "beta hcg calculator" |
+
+**The hCG page renders no verdict, deliberately.** It reports doubling time,
+measured change, and the same rate normalised onto 48 hours, and it never says
+whether a number is normal, reassuring, or worrying. That judgement needs the
+history, the scan, and the assay, and applying a population range to one
+person's pair of results is interpretation this site is not in a position to
+offer. Published figures (Barnhart 2004's 53% floor, Morse 2012's revised 35%,
+ACOG's 3,500 mIU/mL discriminatory level) sit in the prose as cited context,
+never applied to the visitor's own numbers. Keep that line if anyone proposes
+"helpfully" colour-coding the result.
+
+- [ ] Worth having the reviewer read the hCG copy even though the arithmetic
+      needs no sign-off - it is read by people mid-two-week-wait
+- [ ] Next tool candidate, if the pattern keeps paying: the printable IVF
+      calendar PDF in §5 is really a tool, not an article
+
+To add one: a pure lib in `src/lib` (no React, no ambient `new Date()`, so
+prerendering stays deterministic), a test file beside it, a `*Faqs.ts` wired
+into `faqsByPath` in `src/lib/seo.ts`, a route in `src/lib/routes.tsx`, and a
+`staticRoutes` entry in `src/lib/seo.ts`.
+
+---
+
 ## 5. Article backlog (in write order)
 
 Ordered by demand × winnability. Full evidence in `docs/content-plan.md`.
@@ -181,6 +214,13 @@ cluster is a manipulation footprint. One or two product links per article.
   gzipped, and Lighthouse attributes 150-300 ms of FCP to it on mobile. Every
   page loads every page's utilities. Splitting or inlining the critical subset
   is the next real lever on first paint.
+- **The footer email used to overflow every page.** Fixed 25 Aug 2026. An email
+  address is one unbreakable token, and at the `md` breakpoint that footer
+  column is about 154px wide, so the shrink-to-fit link grew wider than the
+  viewport and put a horizontal scrollbar on the whole site. The fix is a
+  `<wbr>` after the "@": `overflow-wrap` breaks the rendered line but does not
+  lower an element's min-content width, so a flex item still refuses to shrink
+  under it, whereas a real break opportunity does both.
 - **GitHub Pages caps `Cache-Control` at `max-age=600`.** Lighthouse wants a
   year on the hashed assets and there is no way to set headers on Pages. Only a
   CDN in front (Cloudflare) would move that audit.

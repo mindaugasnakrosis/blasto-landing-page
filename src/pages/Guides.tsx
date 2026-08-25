@@ -34,7 +34,7 @@ const Guides = () => {
           </span>{" "}
           Every one is reviewed by a clinician before it goes up, which takes a
           little longer — we'd rather publish nothing than publish something
-          unchecked. In the meantime, the due date calculator below is ready to
+          unchecked. In the meantime, the two calculators below are ready to
           use, and{" "}
           <a href="/#beta-access" className="underline hover:text-foreground">
             beta members
@@ -78,19 +78,44 @@ const Guides = () => {
         })}
       </div>
 
-      <div className="mt-12 rounded-2xl border border-border/60 bg-blasto-cream/60 p-6">
-        <h2 className="font-semibold">IVF due date calculator</h2>
-        <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-          Work out your due date from an embryo transfer or egg retrieval date, for
-          fresh or frozen day 3, 5, and 6 transfers.
-        </p>
-        <Link
-          to="/ivf-due-date-calculator/"
-          className="mt-3 inline-block text-sm font-semibold text-blasto-rose-dark hover:text-primary transition-colors"
-        >
-          Open the calculator →
-        </Link>
-      </div>
+      {/* The tools carry this section while the guides are still drafts - they
+          need no medical reviewer, so they are the only pages here that can
+          stand on their own today. */}
+      <section className="mt-12">
+        <h2 className="text-xl font-bold">Free tools</h2>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          {[
+            {
+              to: "/ivf-due-date-calculator/",
+              title: "IVF due date calculator",
+              blurb:
+                "Work out your due date from an embryo transfer or egg retrieval date, for fresh or frozen day 3, 5, and 6 transfers.",
+            },
+            {
+              to: "/hcg-doubling-calculator/",
+              title: "hCG doubling time calculator",
+              blurb:
+                "Turn two beta results into a doubling time, and see that same rate over the 48-hour window published ranges are quoted in.",
+            },
+          ].map((tool) => (
+            <div
+              key={tool.to}
+              className="flex flex-col rounded-2xl border border-border/60 bg-blasto-cream/60 p-6"
+            >
+              <h3 className="font-semibold">{tool.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                {tool.blurb}
+              </p>
+              <Link
+                to={tool.to}
+                className="mt-3 inline-block self-start pt-1 text-sm font-semibold text-blasto-rose-dark hover:text-primary transition-colors"
+              >
+                Open the calculator →
+              </Link>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <nav className="mt-14 border-t border-border/50 pt-7 text-sm">
         <h2 className="font-semibold text-foreground">What Blasto does</h2>

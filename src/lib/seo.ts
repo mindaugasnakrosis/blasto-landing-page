@@ -15,6 +15,7 @@
 import { SITE_URL, SUPPORT_EMAIL } from "./site";
 import { faqs, type Faq } from "./faqs";
 import { calculatorFaqs } from "./calculatorFaqs";
+import { hcgFaqs } from "./hcgFaqs";
 import { featurePages } from "./featurePages";
 import { guides } from "./guides";
 
@@ -52,6 +53,14 @@ const staticRoutes: RouteMeta[] = [
       "Calculate your IVF due date from an embryo transfer or egg retrieval date. Works for fresh and frozen day 3, 5, and 6 transfers, with milestone dates.",
     path: "/ivf-due-date-calculator",
     lastmod: SITE_UPDATED,
+    priority: "0.9",
+  },
+  {
+    title: "hCG Doubling Time Calculator — Beta Levels After IVF | Blasto",
+    description:
+      "Work out your beta hCG doubling time from two blood draws, with the rise converted to the 48-hour window published ranges use. Sourced, and it leaves the interpretation to your clinic.",
+    path: "/hcg-doubling-calculator",
+    lastmod: "2026-08-25",
     priority: "0.9",
   },
   {
@@ -220,6 +229,7 @@ const application = {
 const faqsByPath: Record<string, Faq[]> = {
   "/": faqs,
   "/ivf-due-date-calculator": calculatorFaqs,
+  "/hcg-doubling-calculator": hcgFaqs,
 };
 
 function faqPageFor(path: string): object | null {

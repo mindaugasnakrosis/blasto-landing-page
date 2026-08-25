@@ -338,6 +338,11 @@ const DueDateCalculator = () => {
         <h2 className="font-semibold">Related</h2>
         <ul className="mt-3 space-y-2">
           <li>
+            <Link to="/hcg-doubling-calculator/" className="text-muted-foreground hover:text-primary transition-colors">
+              hCG doubling time calculator
+            </Link>
+          </li>
+          <li>
             <Link to="/guides/" className="text-muted-foreground hover:text-primary transition-colors">
               IVF guides
             </Link>
