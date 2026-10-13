@@ -8,7 +8,7 @@
  * live before the other.
  */
 export const SITE_URL = "https://blastoivf.com";
-export const SUPPORT_EMAIL = "support@moonsify.com";
+export const SUPPORT_EMAIL = "support@blastoivf.com";
 export const APP_STORE_URL = "";
 /** Will be https://play.google.com/store/apps/details?id=com.blastoivf.blasto */
 export const PLAY_STORE_URL = "";
